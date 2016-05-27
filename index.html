@@ -5,12 +5,13 @@
 		<meta charset='utf-8'>
 		<script src="javascript/jquery-1.12.3.js"></script>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link rel="stylesheet" href="css/styles.css">
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/bootstrap-select.css">
+		<link rel="stylesheet" href="css/styles.css">
 		<script src="javascript/jquery-1.12.3.js"></script>
 		<script src="javascript/bootstrap.min.js"></script>
 		<script src="javascript/bootstrap-select.js"></script>
+		<script src="javascript/script.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse opacity">
@@ -34,18 +35,18 @@
 			      	<p class="navbar-text">Frutitudy</p>
 			      	<form class="navbar-form navbar-right">
 			      		<div class="form-group">
-			      			<select class="selectpicker show-menu-arrow">
-					        	<option>Alimento</option>
-					        	<option>Nutriente</option>
+			      			<select class="selectpicker show-menu-arrow" id="selectFoodNutrient">
+					        	<option value="Food">Alimento</option>
+					        	<option value="Nutrient">Nutriente</option>
 				        	</select>
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtros <span class="caret"></span></button>
 							<ul class="dropdown-menu">
-							<li><input class="form-control" type="text" placeholder="Nome"></input></li>
-							<li><input class="form-control" type="text" placeholder="ID"></input></li>
-							<li><input class="form-control" type="text" placeholder="Grupo do alimento"></input></li>
-							<li><input class="form-control" type="text" placeholder="Nutriente"></input></li>
+							<li><input class="form-control" type="text" placeholder="Nome" id="filterName"></input></li>
+							<li><input class="form-control" type="text" placeholder="ID" id="filterID"></input></li>
+							<li><input class="form-control" type="text" placeholder="Grupo do alimento" id="filterGroup"></input></li>
+							<li><input class="form-control" type="text" placeholder="Nutriente" id="filterNutrient"></input></li>
 							</ul>
-							<button type="button" class="btn btn-default">Buscar</button>
+							<button type="button" class="btn btn-default" id="Search">Buscar</button>
 			      		</div>
 			      	</form>
 			    </div>
@@ -64,13 +65,13 @@
 			<div class="row">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-8">
-					<table class="table table-striped table-condensed table-responsive table-medium">
+					<table class="table table-striped table-responsive table-medium">
 						<thead>
 							<tr>
-								<th class="table-col-small">ID</th>
-								<th class="table-col-medium">Nome</th>
-								<th class="table-col-medium">Grupo</th>
-								<th class="table-col-small">Detalhes</th>
+								<th class="table-col-small" data-id="ID">ID</th>
+								<th class="table-col-big" data-name="Nome">Nome</th>
+								<th class="table-col-big" data-group="Grupo">Grupo</th>
+								<th class="table-col-small" data-details="Detalhes">Detalhes</th>
 							</tr>
 						</thead>
 						<tbody>

@@ -20,8 +20,14 @@
 	font-size: 15px;
 }
 .table-col-small{
-	width: 70px;
+	width: 100px;
 }
-.table-col-medium{
-	width: 200px;
+.table-col-big{
+	width: 300px;
+}
+th[data-id="ID"]{
+	border-top-left-radius: 10px;
+}
+th[data-details="Detalhes"]{
+	border-top-right-radius: 10px;	
 }
