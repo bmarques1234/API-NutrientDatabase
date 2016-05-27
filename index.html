@@ -5,10 +5,12 @@
 		<meta charset='utf-8'>
 		<script src="javascript/jquery-1.12.3.js"></script>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/bootstrap-select.css">
 		<script src="javascript/jquery-1.12.3.js"></script>
 		<script src="javascript/bootstrap.min.js"></script>
+		<script src="javascript/bootstrap-select.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse opacity">
@@ -27,13 +29,25 @@
 				        <li><a href="http://www.ars.usda.gov/main/site_main.htm?modecode=80-40-05-25">USDA site</a></li>
 				        <li><a href="#">Sobre</a></li>
 				        <li><a href="#">Ajuda</a></li>
+				        <li></li>
 			      	</ul>
-			      	<ul class="nav navbar-nav navbar-right">
-				        <li><select class="select-nav">
-				        	<option>Alimento</option>
-				        	<option>Nutriente</option>
-				        </select></li>
-				    </ul>
+			      	<p class="navbar-text">Frutitudy</p>
+			      	<form class="navbar-form navbar-right">
+			      		<div class="form-group">
+			      			<select class="selectpicker show-menu-arrow">
+					        	<option>Alimento</option>
+					        	<option>Nutriente</option>
+				        	</select>
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtros <span class="caret"></span></button>
+							<ul class="dropdown-menu">
+							<li><input class="form-control" type="text" placeholder="Nome"></input></li>
+							<li><input class="form-control" type="text" placeholder="ID"></input></li>
+							<li><input class="form-control" type="text" placeholder="Grupo do alimento"></input></li>
+							<li><input class="form-control" type="text" placeholder="Nutriente"></input></li>
+							</ul>
+							<button type="button" class="btn btn-default">Buscar</button>
+			      		</div>
+			      	</form>
 			    </div>
 		  	</div>
 		</nav>
