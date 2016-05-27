@@ -3,10 +3,18 @@ $(document).ready(function(){
 	$('#selectFoodNutrient').change(function(){
 		updateFilters();
 	})
+	$('#Search').click(function(){
+		checkFilters();
+	})
 })
 
+var api = {
+	base:  'http://api.nal.usda.gov/ndb/',
+	key: '&format=json&api_key=iEJf9ZjrUpWcSSKuvekPltYZrO113PbcJxCqvzEC'
+}
+
 function inicializacao(){
-	$('#result').hide();
+	hide(['#filterNutrient', '#result']);
 }
 
 function hide(itens){
@@ -21,6 +29,17 @@ function show(itens){
 	}
 }
 
+function ajax(url){
+	$.ajax({
+		url: url,
+		type: 'GET',
+		success: function(data){
+			result = data;
+			console.log(result);
+		}
+	})
+}
+
 function updateFilters(){
 	var valueSelect = $('#selectFoodNutrient').val();
 	if(valueSelect==='Food'){
@@ -31,4 +50,23 @@ function updateFilters(){
 		hide(['#filterName', '#filterID', '#filterGroup']);
 		show(['#filterNutrient']);
 	}
+}
+
+function checkFilters(){
+	if($('#filterID').val()!==''){
+		reportRequest();
+	}
+	else {
+		searchRequest();
+	}
+}
+
+function reportRequest(){
+	console.log('report');
+	var url = api.base + 'reports/?type=b&ndbno=' + $('#filterID').val() + api.key;
+	ajax(url);  
+}
+
+function searchRequest(){
+	
 }
