@@ -11,3 +11,17 @@
 	background-color: #fff;
 	color: #000;
 }
+.table-medium th{
+	font-size: 20px;
+	background-color: #000;
+	color: #fff;
+}
+.table-medium td{
+	font-size: 15px;
+}
+.table-col-small{
+	width: 70px;
+}
+.table-col-medium{
+	width: 200px;
+}
