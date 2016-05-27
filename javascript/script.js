@@ -68,5 +68,14 @@ function reportRequest(){
 }
 
 function searchRequest(){
-	
+	console.log('search');
+	var url = api.base + 'search/?';
+	if($('#filterName').val()!==''){
+		url += 'q=' + $('#filterName').val() + '&';
+	}
+	if ($('#filterGroup').val()!==''){
+		url += 'fg=' + $('#filterGroup').val();
+	}
+	url += api.key;
+	ajax(url);
 }
