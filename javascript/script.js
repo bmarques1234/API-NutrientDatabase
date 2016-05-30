@@ -6,6 +6,9 @@ $(document).ready(function(){
 	$('#Search').click(function(){
 		checkFilters();
 	})
+	$('#filterGroup').on('click', function(e){
+		stopDropdown(e);
+	})
 })
 
 var api = {
@@ -38,6 +41,11 @@ function ajax(url){
 			console.log(result);
 		}
 	})
+}
+
+function stopDropdown(e){
+    e.stopPropagation();
+    e.preventDefault();
 }
 
 function updateFilters(){
