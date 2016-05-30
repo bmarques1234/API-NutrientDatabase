@@ -32,20 +32,43 @@ function show(itens){
 	}
 }
 
-function ajax(url){
+function stopDropdown(e){
+    e.stopPropagation();
+    e.preventDefault();
+}
+
+function buildUrl(){
+	var url;
+	if($('#filterID').val()!==''){
+		url = api.base + 'reports/?type=b&ndbno=' + $('#filterID').val() + api.key;
+	}
+	else{
+		url = api.base + 'search/?';
+		if($('#filterName').val()!==''){
+			url += 'q=' + $('#filterName').val() + '&';
+		}
+		if ($('#filterGroup').val()!==''){
+			url += 'fg=' + $('#filterGroup').val();
+		}
+		url += api.key;
+	}
+	return url;
+}
+
+function ajax(url, searchType){
 	$.ajax({
 		url: url,
 		type: 'GET',
 		success: function(data){
-			result = data;
-			console.log(result);
+			console.log(data);
+			if(searchType===true){
+				buildModal(data);
+			}
+			else{
+				buildTable(data);
+			}
 		}
 	})
-}
-
-function stopDropdown(e){
-    e.stopPropagation();
-    e.preventDefault();
 }
 
 function updateFilters(){
@@ -71,19 +94,36 @@ function checkFilters(){
 
 function reportRequest(){
 	console.log('report');
-	var url = api.base + 'reports/?type=b&ndbno=' + $('#filterID').val() + api.key;
-	ajax(url);  
+	var url = buildUrl();
+	ajax(url, true);
+	$('#modalTable').modal();
 }
 
 function searchRequest(){
 	console.log('search');
-	var url = api.base + 'search/?';
-	if($('#filterName').val()!==''){
-		url += 'q=' + $('#filterName').val() + '&';
+	var url = buildUrl();
+	ajax(url, false);
+	$('#result').fadeIn();
+}
+
+function buildTable(data){
+	var result = '';
+	$('#tableList tbody').html('');
+	for(var x=0;x<data.list.item.length;x++){
+		result += '<tr><td>' + data.list.item[x].ndbno + '</td>';
+		result += '<td>' + data.list.item[x].name + '</td>';
+		result += '<td>' + data.list.item[x].group + '</td></tr>';
 	}
-	if ($('#filterGroup').val()!==''){
-		url += 'fg=' + $('#filterGroup').val();
+	$('#tableList tbody').html(result);
+}
+
+function buildModal(data){
+	var result = '';
+	$('#tableReport tbody').html('');
+	for(var x=0;x<data.report.food.nutrients.length;x++){
+		result += '<tr><td>' + data.report.food.nutrients[x].name + '</td>';
+		result += '<td>' + data.report.food.nutrients[x].value + ' '; 
+		result += data.report.food.nutrients[x].unit + '</td>';
 	}
-	url += api.key;
-	ajax(url);
+	$('#tableReport tbody').html(result);
 }
