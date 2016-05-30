@@ -2,22 +2,29 @@ $(document).ready(function(){
 	inicializacao();
 	$('#selectFoodNutrient').change(function(){
 		updateFilters();
-	})
+	});
 	$('#Search').click(function(){
-		checkFilters();
-	})
+		checkSelectFilter();
+	});
 	$('#filterGroup').on('click', function(e){
 		stopDropdown(e);
-	})
-})
+	});
+	$('#result').on('click', '.tablePg', function(){
+		var value = $(this).data('value');
+		var url = api.active + '&max=10&offset=' + value*10;
+		ajax(url, false);
+	});
+});
 
 var api = {
 	base:  'http://api.nal.usda.gov/ndb/',
-	key: '&format=json&api_key=iEJf9ZjrUpWcSSKuvekPltYZrO113PbcJxCqvzEC'
+	key: '&format=json&api_key=iEJf9ZjrUpWcSSKuvekPltYZrO113PbcJxCqvzEC',
+	active: '',
+	activeLength: ''
 }
 
 function inicializacao(){
-	hide(['#filterNutrient', '#result']);
+	hide(['#filterNutrient', '#divTable']);
 }
 
 function hide(itens){
@@ -35,6 +42,13 @@ function show(itens){
 function stopDropdown(e){
     e.stopPropagation();
     e.preventDefault();
+}
+
+function clearFilterValue(){
+	$('#filterName').val('');
+	$('#filterID').val('');
+	$('#filterGroup').val('');
+	$('#filterNutrient').val('');
 }
 
 function buildUrl(){
@@ -55,18 +69,23 @@ function buildUrl(){
 	return url;
 }
 
-function ajax(url, searchType){
+function ajax(url, searchType, getLength){
 	$.ajax({
 		url: url,
 		type: 'GET',
 		success: function(data){
-			console.log(data);
-			if(searchType===true){
+			if(getLength){
+				var x=(data.list.item.length)/10;
+				api.activeLength=Math.ceil(x);
+			}
+			if(searchType){
 				buildModal(data);
 			}
 			else{
 				buildTable(data);
 			}
+			clearFilterValue();
+			show(['#divTable']);
 		}
 	})
 }
@@ -83,6 +102,15 @@ function updateFilters(){
 	}
 }
 
+function checkSelectFilter(){
+	if($('#selectFoodNutrient').val()==='Food'){
+		checkFilters();
+	}
+	else{
+		nutrientRequest();
+	}
+}
+
 function checkFilters(){
 	if($('#filterID').val()!==''){
 		reportRequest();
@@ -92,24 +120,35 @@ function checkFilters(){
 	}
 }
 
+function checkTableLength(data){
+	var result='';
+	for(var c=1;c<api.activeLength+1;c++){
+		result += '<li><a class="tablePg" data-value=' + c + ' href="#result">' + c + '</a></li>';
+	}
+	$('.pagination').html(result);
+}
+
 function reportRequest(){
-	console.log('report');
 	var url = buildUrl();
 	ajax(url, true);
 	$('#modalTable').modal();
 }
 
 function searchRequest(){
-	console.log('search');
 	var url = buildUrl();
-	ajax(url, false);
+	api.active = url;
+	ajax(url, false, true);
 	$('#result').fadeIn();
 }
 
+function nutrientRequest(){
+
+}
+
 function buildTable(data){
+	checkTableLength(data);
 	var result = '';
-	$('#tableList tbody').html('');
-	for(var x=0;x<data.list.item.length;x++){
+	for(var x=0;x<10;x++){
 		result += '<tr><td>' + data.list.item[x].ndbno + '</td>';
 		result += '<td>' + data.list.item[x].name + '</td>';
 		result += '<td>' + data.list.item[x].group + '</td></tr>';
@@ -119,7 +158,6 @@ function buildTable(data){
 
 function buildModal(data){
 	var result = '';
-	$('#tableReport tbody').html('');
 	for(var x=0;x<data.report.food.nutrients.length;x++){
 		result += '<tr><td>' + data.report.food.nutrients[x].name + '</td>';
 		result += '<td>' + data.report.food.nutrients[x].value + ' '; 

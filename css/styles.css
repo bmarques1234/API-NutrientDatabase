@@ -35,7 +35,3 @@ th[data-id="ID"]{
 th[data-details="Details"]{
 	border-top-right-radius: 10px;	
 }
-#divTable{
-	height: 500px;
-	overflow: scroll;
-}
