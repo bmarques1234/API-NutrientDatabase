@@ -44,7 +44,7 @@ select.selectpicker {
   width: auto !important;
 }
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-  width: 120px;  /* default 220px */
+  width: 90px;  /* default 220px */
 }
 .bootstrap-select .dropdown-toggle:focus {
   outline: thin dotted #333333 !important;
