@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$('#Search').click(function(){
 		checkSelectFilter();
 	});
-	$('#filterGroup').on('click', function(e){
+	$('.select').on('click', function(e){
 		stopDropdown(e);
 	});
 	$('#filterID').keypress(onlyNumbers);
@@ -125,23 +125,27 @@ function buildAlertMessage(){
 	$('#modalTable').modal('hide');
 }
 
-function buildUrl(){
+function buildUrl(type){
 	var url;
-	if($('#filterID').val()!==''){
-		url = api.base + 'reports/?type=b&ndbno=' + $('#filterID').val() + api.key;
-	}
-	else if($('#filterNutrient').val()!==''){
-		url = api.base + 'nutrients/?nutrients=' + $('#filterNutrient').val() + api.key;
-	}
-	else{
-		url = api.base + 'search/?';
-		if($('#filterName').val()!==''){
-			url += 'q=' + $('#filterName').val() + '&';
+	if(type==='Food'){
+		if($('#filterID').val()!==''){
+			url = api.base + 'reports/?type=b&ndbno=' + $('#filterID').val() + api.key;
 		}
-		if ($('#filterGroup').val()!==''){
-			url += 'fg=' + $('#filterGroup').val();
+		else{
+			url = api.base + 'search/?';
+			if($('#filterName').val()!==''){
+				url += 'q=' + $('#filterName').val() + '&';
+			}
+			if ($('#filterGroup').val()!==''){
+				url += 'fg=' + $('#filterGroup').val();
+			}
 		}
 		url += api.key;
+	}
+	else {
+		if($('#filterNutrient').val()!==''){
+			url = api.base + 'nutrients/?nutrients=' + $('#filterNutrient').val() + api.key;
+		}
 	}
 	return url;
 }
@@ -178,6 +182,7 @@ function buildModal(data){
 	var result = '';
 	for(var x=0;x<data.report.food.nutrients.length;x++){
 		result += '<tr><td>' + data.report.food.nutrients[x].name + '</td>';
+		result += '<td>' + data.report.food.nutrients[x].nutrient_id + '</td>';
 		result += '<td>' + data.report.food.nutrients[x].value + ' '; 
 		result += data.report.food.nutrients[x].unit + '</td>';
 	}
@@ -235,20 +240,20 @@ function nutrient(data, getLength){
 }
 
 function reportRequest(){
-	var url = buildUrl();
+	var url = buildUrl('Food');
 	ajax(url, 'foodReport');
 	$('#modalTable').modal();
 }
 
 function searchRequest(){
-	var url = buildUrl();
+	var url = buildUrl('Food');
 	api.active = url;
 	ajax(url, 'foodSearch', true);
 	$('#result').fadeIn();
 }
 
 function nutrientRequest(){
-	var url = buildUrl();
+	var url = buildUrl('Nutrient');
 	api.active = url;
 	ajax(url, 'nutrientReport', true);
 	$('#result').fadeIn();
