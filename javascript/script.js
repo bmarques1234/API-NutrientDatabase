@@ -51,6 +51,13 @@ function clearFilterValue(){
 	$('#filterNutrient').val('');
 }
 
+function buildModalHeader(name, id){
+	var result = '';
+	result += '<h3 class="modal-title">' + name + '</h3>';
+	result += '<h3 class="modal-title">ID: ' + id + '</h3>';
+	$('#reportInfo').html(result);
+}
+
 function buildUrl(){
 	var url;
 	if($('#filterID').val()!==''){
@@ -74,9 +81,10 @@ function ajax(url, searchType, getLength){
 		url: url,
 		type: 'GET',
 		success: function(data){
+			console.log(data);
 			if(getLength){
 				var x=(data.list.item.length)/10;
-				api.activeLength=Math.ceil(x);
+				api.activeLength=Math.floor(x);
 			}
 			if(searchType){
 				buildModal(data);
@@ -148,7 +156,14 @@ function nutrientRequest(){
 function buildTable(data){
 	checkTableLength(data);
 	var result = '';
-	for(var x=0;x<10;x++){
+	var length;
+	if(data.list.item.length<11){
+		length = data.list.item.length;
+	}
+	else {
+		length = 10;
+	}
+	for(var x=0;x<length;x++){
 		result += '<tr><td>' + data.list.item[x].ndbno + '</td>';
 		result += '<td>' + data.list.item[x].name + '</td>';
 		result += '<td>' + data.list.item[x].group + '</td></tr>';
@@ -164,4 +179,5 @@ function buildModal(data){
 		result += data.report.food.nutrients[x].unit + '</td>';
 	}
 	$('#tableReport tbody').html(result);
+	buildModalHeader(data.report.food.name, data.report.food.ndbno);
 }
