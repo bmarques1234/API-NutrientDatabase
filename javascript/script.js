@@ -19,6 +19,12 @@ $(document).ready(function(){
 			ajax(url, 'nutrientReport');
 		}
 	});
+	$('#result').on('click', '.glyphicon-search', function(){
+		var value = $(this).data('id');
+		var url = api.base + 'reports/?type=b&ndbno=' + value + api.key;
+		ajax(url, 'foodReport');
+		$('#modalTable').modal();
+	});
 });
 
 var api = {
@@ -101,7 +107,6 @@ function ajax(url, searchType, getLength){
 			else {
 				food(data, searchType, getLength);
 			}
-			
 			clearFilterValue();
 		},
 		error: function(){
@@ -122,13 +127,14 @@ function food(data, searchType, getLength){
 	}
 	else{
 		buildTable(data, '#tableFood tbody');
+		hide(['#searchNutrientTable']);
+		show(['#searchFoodTable']);
 	}
-	hide(['#searchNutrientTable']);
-	show(['#searchFoodTable']);
 }
 
 function nutrient(data, getLength){
 	console.log('nutrient');
+	checkErrors(data);
 	if(getLength){
 		var x=(data.report.foods.length)/10;
 		api.activeLength=Math.floor(x);
@@ -136,6 +142,12 @@ function nutrient(data, getLength){
 	buildTable(data, '#tableNutrient tbody');
 	hide(['#searchFoodTable']);
 	show(['#searchNutrientTable']);
+}
+
+function checkErrors(data){
+	if(data.hasOwnProperty('errors')){
+		buildAlertMessage();
+	}
 }
 
 function updateFilters(){
@@ -216,8 +228,10 @@ function buildTable(data, table){
 		result += '<tr><td>' + item[x].ndbno + '</td>';
 		result += '<td>' + item[x].name + '</td>';
 		if(table==='#tableFood tbody'){
-			result += '<td>' + item[x].group + '</td></tr>';
+			result += '<td>' + item[x].group + '</td>';
 		}
+		result += '<td><span class="glyphicon glyphicon-search" aria-hidden="true" data-id='; 
+		result += item[x].ndbno + '></span></td></tr>';
 	}
 	$(table).html(result);
 }
