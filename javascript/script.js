@@ -11,8 +11,13 @@ $(document).ready(function(){
 	});
 	$('#result').on('click', '.tablePg', function(){
 		var value = $(this).data('value');
-		var url = api.active + '&max=10&offset=' + value*10;
-		ajax(url, false);
+		var url = api.active + '&max=10&offset=' + (value-1)*10;
+		if($('#selectFoodNutrient').val()==='Food'){
+			ajax(url, 'foodSearch');
+		}
+		else {
+			ajax(url, 'nutrientReport');
+		}
 	});
 });
 
@@ -91,7 +96,7 @@ function ajax(url, searchType, getLength){
 		success: function(data){
 			console.log(data);
 			if(searchType==='nutrientReport'){
-				nutrient(data);
+				nutrient(data, getLength);
 			}
 			else {
 				food(data, searchType, getLength);
@@ -122,10 +127,12 @@ function food(data, searchType, getLength){
 	show(['#searchFoodTable']);
 }
 
-function nutrient(data){
+function nutrient(data, getLength){
 	console.log('nutrient');
-	var x=(data.report.foods.length)/10;
-	api.activeLength=Math.floor(x);
+	if(getLength){
+		var x=(data.report.foods.length)/10;
+		api.activeLength=Math.floor(x);
+	}
 	buildTable(data, '#tableNutrient tbody');
 	hide(['#searchFoodTable']);
 	show(['#searchNutrientTable']);
