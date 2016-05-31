@@ -9,6 +9,8 @@ $(document).ready(function(){
 	$('#filterGroup').on('click', function(e){
 		stopDropdown(e);
 	});
+	$('#filterID').keypress(onlyNumbers);
+	$('#filterNutrient').keypress(onlyNumbers);
 	$('#result').on('click', '.tablePg', function(){
 		var value = $(this).data('value');
 		var url = api.active + '&max=10&offset=' + (value-1)*10;
@@ -55,11 +57,60 @@ function stopDropdown(e){
     e.preventDefault();
 }
 
+function onlyNumbers(e){
+	if ( e.which == 8 || e.which == 0 ) return true;
+   	if ( e.which < 48 || e.which > 57 ) return false;
+}
+
 function clearFilterValue(){
 	$('#filterName').val('');
 	$('#filterID').val('');
 	$('#filterGroup').val('');
 	$('#filterNutrient').val('');
+}
+
+function checkErrors(data){
+	if(data.hasOwnProperty('errors')){
+		buildAlertMessage();
+	}
+}
+
+function checkSelectFilter(){
+	if($('#selectFoodNutrient').val()==='Food'){
+		checkFilters();
+	}
+	else{
+		nutrientRequest();
+	}
+}
+
+function checkFilters(){
+	if($('#filterID').val()!==''){
+		reportRequest();
+	}
+	else {
+		searchRequest();
+	}
+}
+
+function checkTableLength(data){
+	var result='';
+	for(var c=1;c<api.activeLength+1;c++){
+		result += '<li><a class="tablePg" data-value=' + c + ' href="#result">' + c + '</a></li>';
+	}
+	$('.pagination').html(result);
+}
+
+function updateFilters(){
+	var valueSelect = $('#selectFoodNutrient').val();
+	if(valueSelect==='Food'){
+		hide(['#filterNutrient']);
+		show(['#filterName', '#filterID', '#filterGroup']);
+	}
+	else{
+		hide(['#filterName', '#filterID', '#filterGroup']);
+		show(['#filterNutrient']);
+	}
 }
 
 function buildModalHeader(name, id){
@@ -93,6 +144,45 @@ function buildUrl(){
 		url += api.key;
 	}
 	return url;
+}
+
+function buildTable(data, table){
+	checkTableLength(data);
+	if(table==='#tableFood tbody'){
+		item = data.list.item;
+	}
+	else {
+		item = data.report.foods;
+	}
+	var result = '';
+	var length;
+	if(item.length<11){
+		length = item.length;
+	}
+	else {
+		length = 10;
+	}
+	for(var x=0;x<length;x++){
+		result += '<tr><td>' + item[x].ndbno + '</td>';
+		result += '<td>' + item[x].name + '</td>';
+		if(table==='#tableFood tbody'){
+			result += '<td>' + item[x].group + '</td>';
+		}
+		result += '<td><span class="glyphicon glyphicon-search" aria-hidden="true" data-id='; 
+		result += item[x].ndbno + '></span></td></tr>';
+	}
+	$(table).html(result);
+}
+
+function buildModal(data){
+	var result = '';
+	for(var x=0;x<data.report.food.nutrients.length;x++){
+		result += '<tr><td>' + data.report.food.nutrients[x].name + '</td>';
+		result += '<td>' + data.report.food.nutrients[x].value + ' '; 
+		result += data.report.food.nutrients[x].unit + '</td>';
+	}
+	$('#tableReport tbody').html(result);
+	buildModalHeader(data.report.food.name, data.report.food.ndbno);
 }
 
 function ajax(url, searchType, getLength){
@@ -144,50 +234,6 @@ function nutrient(data, getLength){
 	show(['#searchNutrientTable']);
 }
 
-function checkErrors(data){
-	if(data.hasOwnProperty('errors')){
-		buildAlertMessage();
-	}
-}
-
-function updateFilters(){
-	var valueSelect = $('#selectFoodNutrient').val();
-	if(valueSelect==='Food'){
-		hide(['#filterNutrient']);
-		show(['#filterName', '#filterID', '#filterGroup']);
-	}
-	else{
-		hide(['#filterName', '#filterID', '#filterGroup']);
-		show(['#filterNutrient']);
-	}
-}
-
-function checkSelectFilter(){
-	if($('#selectFoodNutrient').val()==='Food'){
-		checkFilters();
-	}
-	else{
-		nutrientRequest();
-	}
-}
-
-function checkFilters(){
-	if($('#filterID').val()!==''){
-		reportRequest();
-	}
-	else {
-		searchRequest();
-	}
-}
-
-function checkTableLength(data){
-	var result='';
-	for(var c=1;c<api.activeLength+1;c++){
-		result += '<li><a class="tablePg" data-value=' + c + ' href="#result">' + c + '</a></li>';
-	}
-	$('.pagination').html(result);
-}
-
 function reportRequest(){
 	var url = buildUrl();
 	ajax(url, 'foodReport');
@@ -206,43 +252,4 @@ function nutrientRequest(){
 	api.active = url;
 	ajax(url, 'nutrientReport', true);
 	$('#result').fadeIn();
-}
-
-function buildTable(data, table){
-	checkTableLength(data);
-	if(table==='#tableFood tbody'){
-		item = data.list.item;
-	}
-	else {
-		item = data.report.foods;
-	}
-	var result = '';
-	var length;
-	if(item.length<11){
-		length = item.length;
-	}
-	else {
-		length = 10;
-	}
-	for(var x=0;x<length;x++){
-		result += '<tr><td>' + item[x].ndbno + '</td>';
-		result += '<td>' + item[x].name + '</td>';
-		if(table==='#tableFood tbody'){
-			result += '<td>' + item[x].group + '</td>';
-		}
-		result += '<td><span class="glyphicon glyphicon-search" aria-hidden="true" data-id='; 
-		result += item[x].ndbno + '></span></td></tr>';
-	}
-	$(table).html(result);
-}
-
-function buildModal(data){
-	var result = '';
-	for(var x=0;x<data.report.food.nutrients.length;x++){
-		result += '<tr><td>' + data.report.food.nutrients[x].name + '</td>';
-		result += '<td>' + data.report.food.nutrients[x].value + ' '; 
-		result += data.report.food.nutrients[x].unit + '</td>';
-	}
-	$('#tableReport tbody').html(result);
-	buildModalHeader(data.report.food.name, data.report.food.ndbno);
 }
