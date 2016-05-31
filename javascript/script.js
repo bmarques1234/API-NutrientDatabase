@@ -58,6 +58,10 @@ function buildModalHeader(name, id){
 	$('#reportInfo').html(result);
 }
 
+function buildAlertMessage(){
+	$('#modalError').modal();
+}
+
 function buildUrl(){
 	var url;
 	if($('#filterID').val()!==''){
@@ -94,6 +98,9 @@ function ajax(url, searchType, getLength){
 			}
 			clearFilterValue();
 			show(['#divTable']);
+		},
+		error: function(){
+			buildAlertMessage();
 		}
 	})
 }
