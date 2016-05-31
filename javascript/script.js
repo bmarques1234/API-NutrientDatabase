@@ -139,8 +139,8 @@ function buildUrl(type){
 			if ($('#filterGroup').val()!==''){
 				url += 'fg=' + $('#filterGroup').val();
 			}
+			url += api.key;
 		}
-		url += api.key;
 	}
 	else {
 		if($('#filterNutrient').val()!==''){
