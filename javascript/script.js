@@ -13,19 +13,11 @@ $(document).ready(function(){
 	$('#filterNutrient').keypress(onlyNumbers);
 	$('#result').on('click', '.tablePg', function(){
 		var value = $(this).data('value');
-		var url = api.active + '&max=10&offset=' + (value-1)*10;
-		if($('#selectFoodNutrient').val()==='Food'){
-			ajax(url, 'foodSearch');
-		}
-		else {
-			ajax(url, 'nutrientReport');
-		}
+		pagination(value);
 	});
 	$('#result').on('click', '.glyphicon-search', function(){
 		var value = $(this).data('id');
-		var url = api.base + 'reports/?type=b&ndbno=' + value + api.key;
-		ajax(url, 'foodReport');
-		$('#modalTable').modal();
+		details(value);
 	});
 });
 
@@ -93,14 +85,6 @@ function checkFilters(){
 	}
 }
 
-function checkTableLength(data){
-	var result='';
-	for(var c=1;c<api.activeLength+1;c++){
-		result += '<li><a class="tablePg" data-value=' + c + ' href="#result">' + c + '</a></li>';
-	}
-	$('.pagination').html(result);
-}
-
 function updateFilters(){
 	var valueSelect = $('#selectFoodNutrient').val();
 	if(valueSelect==='Food'){
@@ -113,10 +97,33 @@ function updateFilters(){
 	}
 }
 
+function itemTable(data, table){
+	var item;
+	if(table==='#tableFood tbody'){
+		item = data.list.item;
+	}
+	else {
+		item = data.report.foods;
+	}
+	if(item.length<11){
+		item.dataLength = item.length;
+	}
+	else {
+		item.dataLength = 10;
+	}
+	return item;
+}
+
+function buildPagination(data){
+	var result='';
+	for(var c=1;c<api.activeLength+1;c++){
+		result += '<li><a class="tablePg" data-value=' + c + ' href="#result">' + c + '</a></li>';
+	}
+	$('.pagination').html(result);
+}
+
 function buildModalHeader(name, id){
-	var result = '';
-	result += '<h3 class="modal-title">' + name + '</h3>';
-	result += '<h3 class="modal-title">ID: ' + id + '</h3>';
+	 var result = '<h3 class="modal-title">' + name + '</h3>' + '<h3 class="modal-title">ID: ' + id + '</h3>';
 	$('#reportInfo').html(result);
 }
 
@@ -151,22 +158,10 @@ function buildUrl(type){
 }
 
 function buildTable(data, table){
-	checkTableLength(data);
-	if(table==='#tableFood tbody'){
-		item = data.list.item;
-	}
-	else {
-		item = data.report.foods;
-	}
+	buildPagination(data);
 	var result = '';
-	var length;
-	if(item.length<11){
-		length = item.length;
-	}
-	else {
-		length = 10;
-	}
-	for(var x=0;x<length;x++){
+	item = itemTable(data, table);
+	for(var x=0;x<item.dataLength;x++){
 		result += '<tr><td>' + item[x].ndbno + '</td>';
 		result += '<td>' + item[x].name + '</td>';
 		if(table==='#tableFood tbody'){
@@ -180,6 +175,7 @@ function buildTable(data, table){
 
 function buildModal(data){
 	var result = '';
+	buildModalHeader(data.report.food.name, data.report.food.ndbno);
 	for(var x=0;x<data.report.food.nutrients.length;x++){
 		result += '<tr><td>' + data.report.food.nutrients[x].name + '</td>';
 		result += '<td>' + data.report.food.nutrients[x].nutrient_id + '</td>';
@@ -187,7 +183,6 @@ function buildModal(data){
 		result += data.report.food.nutrients[x].unit + '</td>';
 	}
 	$('#tableReport tbody').html(result);
-	buildModalHeader(data.report.food.name, data.report.food.ndbno);
 }
 
 function ajax(url, searchType, getLength){
@@ -195,7 +190,6 @@ function ajax(url, searchType, getLength){
 		url: url,
 		type: 'GET',
 		success: function(data){
-			console.log(data);
 			if(searchType==='nutrientReport'){
 				nutrient(data, getLength);
 			}
@@ -212,10 +206,9 @@ function ajax(url, searchType, getLength){
 }
 
 function food(data, searchType, getLength){
-	console.log('food');
 	if(getLength){
 		var x=(data.list.item.length)/10;
-		api.activeLength=Math.floor(x);
+		api.activeLength=Math.ceil(x);
 	}
 	if(searchType==='foodReport'){
 		buildModal(data);
@@ -228,11 +221,10 @@ function food(data, searchType, getLength){
 }
 
 function nutrient(data, getLength){
-	console.log('nutrient');
 	checkErrors(data);
 	if(getLength){
 		var x=(data.report.foods.length)/10;
-		api.activeLength=Math.floor(x);
+		api.activeLength=Math.ceil(x);
 	}
 	buildTable(data, '#tableNutrient tbody');
 	hide(['#searchFoodTable']);
@@ -257,4 +249,20 @@ function nutrientRequest(){
 	api.active = url;
 	ajax(url, 'nutrientReport', true);
 	$('#result').fadeIn();
+}
+
+function pagination(value){
+	var url = api.active + '&max=10&offset=' + (value-1)*10;
+	if($('#selectFoodNutrient').val()==='Food'){
+		ajax(url, 'foodSearch');
+	}
+	else {
+		ajax(url, 'nutrientReport');
+	}
+}
+
+function details(value){
+	var url = api.base + 'reports/?type=b&ndbno=' + value + api.key;
+	ajax(url, 'foodReport');
+	$('#modalTable').modal();
 }
