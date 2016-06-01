@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    inicializacao();
+    initialization();
     $('#selectFoodNutrient').change(function(){
         updateFilters();
     });
@@ -30,10 +30,10 @@ var api = {
     base:  'http://api.nal.usda.gov/ndb/',
     key: '&format=json&api_key=iEJf9ZjrUpWcSSKuvekPltYZrO113PbcJxCqvzEC',
     active: '',
-    activeLength: ''
+    paginationLength: ''
 }
 
-function inicializacao(){
+function initialization(){
     hide(['#filterNutrient', '#searchFoodTable', '#searchNutrientTable', '#result h1']);
 }
 
@@ -68,7 +68,12 @@ function scroll(element){
 
 function onlyNumbers(e){
     if ( e.which == 8 || e.which == 0 ) return true;
-    if ( e.which < 48 || e.which > 57 ) return false;
+    if ( e.which < 48 || e.which > 57) return false;
+}
+
+function setPaginationLength(length){
+    var x=(length)/10;
+    api.paginationLength=Math.ceil(x);
 }
 
 function clearFilterValue(){
@@ -133,7 +138,7 @@ function itemTable(data, table){
 
 function buildPagination(data){
     var result='';
-    for(var c=1;c<api.activeLength+1;c++){
+    for(var c=1;c<api.paginationLength+1;c++){
         result += '<li><a class="tablePg" data-value=' + c + ' href="#result">' + c + '</a></li>';
     }
     $('.pagination').html(result);
@@ -184,8 +189,7 @@ function buildTable(data, table){
         if(table==='#tableFood tbody'){
             result += '<td>' + item[x].group + '</td>';
         }
-        result += '<td><span class="glyphicon glyphicon-search" aria-hidden="true" data-id='; 
-        result += item[x].ndbno + '></span></td></tr>';
+        result += '<td><span class="glyphicon glyphicon-search" aria-hidden="true" data-id=' + item[x].ndbno + '></span></td></tr>';
     }
     $(table).html(result);
     scroll('#result');
@@ -225,8 +229,7 @@ function ajax(url, searchType, getLength){
 
 function food(data, searchType, getLength){
     if(getLength){
-        var x=(data.list.item.length)/10;
-        api.activeLength=Math.ceil(x);
+        setPaginationLength(data.list.item.length);
     }
     if(searchType==='foodReport'){
         buildModal(data);
@@ -241,8 +244,7 @@ function food(data, searchType, getLength){
 function nutrient(data, getLength){
     checkErrors(data);
     if(getLength){
-        var x=(data.report.foods.length)/10;
-        api.activeLength=Math.ceil(x);
+        setPaginationLength(data.report.foods.length);
     }
     buildTable(data, '#tableNutrient tbody');
     hide(['#searchFoodTable']);
