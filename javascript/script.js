@@ -195,15 +195,27 @@ function buildTable(data, table){
     scroll('#result');
 }
 
+function buildModalTable(data, group){
+    var result = '<tr><td class="bg-gray" colspan="3">' + group + '</td></tr>';
+    for(var x=0;x<data.report.food.nutrients.length;x++){
+        if(data.report.food.nutrients[x].group===group){
+            result += '<tr><td>' + data.report.food.nutrients[x].name + '</td>';
+            result += '<td>' + data.report.food.nutrients[x].nutrient_id + '</td>';
+            result += '<td>' + data.report.food.nutrients[x].value + ' '; 
+            result += data.report.food.nutrients[x].unit + '</td>';
+        }
+    }
+    return result;
+}
+
 function buildModal(data){
     var result = '';
     buildModalHeader(data.report.food.name, data.report.food.ndbno);
-    for(var x=0;x<data.report.food.nutrients.length;x++){
-        result += '<tr><td>' + data.report.food.nutrients[x].name + '</td>';
-        result += '<td>' + data.report.food.nutrients[x].nutrient_id + '</td>';
-        result += '<td>' + data.report.food.nutrients[x].value + ' '; 
-        result += data.report.food.nutrients[x].unit + '</td>';
-    }
+    result += buildModalTable(data, 'Proximates');
+    result += buildModalTable(data, 'Minerals');
+    result += buildModalTable(data, 'Vitamins');
+    result += buildModalTable(data, 'Lipids');
+    result += buildModalTable(data, 'Other');
     $('#tableReport tbody').html(result);
 }
 

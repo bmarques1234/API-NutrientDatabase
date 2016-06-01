@@ -15,6 +15,9 @@
     background-color: #fff;
     color: #000;
 }
+.bg-gray{
+    background-color: #ccc;
+}
 .table-medium th{
     font-size: 20px;
     background-color: #000;
