@@ -1,375 +1,373 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Nutritudy</title>
-		<meta charset='utf-8'>
-		<script src="javascript/jquery-1.12.3.js"></script>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<link rel="stylesheet" href="css/bootstrap-select.css">
-		<link rel="stylesheet" href="css/styles.css">
-		<script src="javascript/jquery-1.12.3.js"></script>
-		<script src="javascript/bootstrap.min.js"></script>
-		<script src="javascript/bootstrap-select.js"></script>
-		<script src="javascript/script.js"></script>
-	</head>
-	<body>
-		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse opacity">
-	  		<div class="container-fluid">
-		    	<div class="navbar-header">
-			      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				        <span class="sr-only">Toggle navigation</span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-			      	</button>
-			      	<a class="navbar-brand" href="#top"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
-		    	</div>
-		    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			      	<ul class="nav navbar-nav">
-				        <li><a href="http://www.ars.usda.gov/main/site_main.htm?modecode=80-40-05-25" target="_blank">USDA site</a></li>
-				        <li><a href="#top">About</a></li>
-				        <li><a href="#modalHelp" data-toggle="modal">Help</a></li>
-			      	</ul>
-			      	<p class="navbar-text">Nutritudy</p>
-			      	<form class="navbar-form navbar-right">
-			      		<div class="form-group">
-			      			<select class="selectpicker show-menu-arrow" id="selectFoodNutrient">
-					        	<option value="Food">Food</option>
-					        	<option value="Nutrient">Nutrient</option>
-				        	</select>
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters <span class="caret"></span></button>
-							<ul class="dropdown-menu">
-								<li><input class="form-control" type="text" placeholder="Name" id="filterName"></input></li>
-								<li><input class="form-control" type="text" placeholder="ID" id="filterID"></input></li>
-								<li>
-									<select class="select" id="filterGroup">
-							        	<option value>All food groups</option>
-							        	<option value="American Indian/Alaska Native Foods">American Indian/Alaska Native Foods</option>
-							        	<option value="Baby Foods">Baby Foods</option>
-							        	<option value="Baked Products">Baked Products</option>
-							        	<option value="Beef Products">Beef Products</option>
-							        	<option value="Beverages">Beverages</option>
-							        	<option value="Branded Foods Products Database">Branded Foods Products Database</option>
-							        	<option value="Breakfast Cereals">Breakfast Cereals</option>
-							        	<option value="Cereal Grains and Pasta">Cereal Grains and Pasta</option>
-							        	<option value="Dairy and Egg Products">Dairy and Egg Products</option>
-							        	<option value="Fast Foods">Fast Foods</option>
-							        	<option value="Fats and Oils">Fats and Oils</option>
-							        	<option value="Finfish and Shellfish Products">Finfish and Shellfish Products</option>
-							        	<option value="Fruits and Fruit Juices">Fruits and Fruit Juices</option>
-							        	<option value="Lamb, Veal, and Game Products">Lamb, Veal, and Game Products</option>
-							        	<option value="Legumes and Legume Products">Legumes and Legume Products</option>
-							        	<option value="Meals, Entrees, and Side Dishes">Meals, Entrees, and Side Dishes</option>
-							        	<option value="Nut and Seed Products">Nut and Seed Products</option>
-							        	<option value="Pork Products">Pork Products</option>
-							        	<option value="Poultry Products">Poultry Products</option>
-							        	<option value="Restaurant Foods">Restaurant Foods</option>
-							        	<option value="Sausages and Luncheon Meats">Sausages and Luncheon Meats</option>
-							        	<option value="Snacks">Snacks</option>
-							        	<option value="Soups, Sauces, and Gravies">Soups, Sauces, and Gravies</option>
-							        	<option value="Spices and Herbs">Spices and Herbs</option>
-							        	<option value="Sweets">Sweets</option>
-							        	<option value="Vegetables and Vegetable Products">Vegetables and Vegetable Products</option>
-					        		</select>
-					        	</li>
-								<li>
-									<select class="select" id="filterNutrient">
-										<option value="">Select nutrient ...</option>
-										<option value="255">Water (g)</option>
-										<option value="208">Energy (kcal)</option>
-										<option value="268">Energy (kJ)</option>
-										<option value="203">Protein (g)</option>
-										<option value="204">Total lipid (fat) (g)</option>
-										<option value="207">Ash (g)</option>
-										<option value="205">Carbohydrate, by difference (g)</option>
-										<option value="291">Fiber, total dietary (g)</option>
-										<option value="269">Sugars, total (g)</option>
-										<option value="210">Sucrose (g)</option>
-										<option value="211">Glucose (dextrose) (g)</option>
-										<option value="212">Fructose (g)</option>
-										<option value="213">Lactose (g)</option>
-										<option value="214">Maltose (g)</option>
-										<option value="287">Galactose (g)</option>
-										<option value="209">Starch (g)</option>
-										<option value="301">Calcium, Ca (mg)</option>
-										<option value="303">Iron, Fe (mg)</option>
-										<option value="304">Magnesium, Mg (mg)</option>
-										<option value="305">Phosphorus, P (mg)</option>
-										<option value="306">Potassium, K (mg)</option>
-										<option value="307">Sodium, Na (mg)</option>
-										<option value="309">Zinc, Zn (mg)</option>
-										<option value="312">Copper, Cu (mg)</option>
-										<option value="315">Manganese, Mn (mg)</option>
-										<option value="317">Selenium, Se (µg)</option>
-										<option value="313">Fluoride, F (µg)</option>
-										<option value="401">Vitamin C, total ascorbic acid (mg)</option>
-										<option value="404">Thiamin (mg)</option>
-										<option value="405">Riboflavin (mg)</option>
-										<option value="406">Niacin (mg)</option>
-										<option value="410">Pantothenic acid (mg)</option>
-										<option value="415">Vitamin B-6 (mg)</option>
-										<option value="417">Folate, total (µg)</option>
-										<option value="431">Folic acid (µg)</option>
-										<option value="432">Folate, food (µg)</option>
-										<option value="435">Folate, DFE (µg)</option>
-										<option value="421">Choline, total (mg)</option>
-										<option value="454">Betaine (mg)</option>
-										<option value="418">Vitamin B-12 (µg)</option>
-										<option value="578">Vitamin B-12, added (µg)</option>
-										<option value="320">Vitamin A, RAE (µg)</option>
-										<option value="319">Retinol (µg)</option>
-										<option value="321">Carotene, beta (µg)</option>
-										<option value="322">Carotene, alpha (µg)</option>
-										<option value="334">Cryptoxanthin, beta (µg)</option>
-										<option value="318">Vitamin A, IU (IU)</option>
-										<option value="337">Lycopene (µg)</option>
-										<option value="338">Lutein + zeaxanthin (µg)</option>
-										<option value="323">Vitamin E (alpha-tocopherol) (mg)</option>
-										<option value="573">Vitamin E, added (mg)</option>
-										<option value="341">Tocopherol, beta (mg)</option>
-										<option value="342">Tocopherol, gamma (mg)</option>
-										<option value="343">Tocopherol, delta (mg)</option>
-										<option value="344">Tocotrienol, alpha (mg)</option>
-										<option value="345">Tocotrienol, beta (mg)</option>
-										<option value="346">Tocotrienol, gamma (mg)</option>
-										<option value="347">Tocotrienol, delta (mg)</option>
-										<option value="328">Vitamin D (D2 + D3) (µg)</option>
-										<option value="325">Vitamin D2 (ergocalciferol) (µg)</option>
-										<option value="326">Vitamin D3 (cholecalciferol) (µg)</option>
-										<option value="324">Vitamin D (IU)</option>
-										<option value="430">Vitamin K (phylloquinone) (µg)</option>
-										<option value="429">Dihydrophylloquinone (µg)</option>
-										<option value="428">Menaquinone-4 (µg)</option>
-										<option value="606">Fatty acids, total saturated (g)</option>
-										<option value="607">4:0 (g)</option>
-										<option value="608">6:0 (g)</option>
-										<option value="609">8:0 (g)</option>
-										<option value="610">10:0 (g)</option>
-										<option value="611">12:0 (g)</option>
-										<option value="696">13:0 (g)</option>
-										<option value="612">14:0 (g)</option>
-										<option value="652">15:0 (g)</option>
-										<option value="613">16:0 (g)</option>
-										<option value="653">17:0 (g)</option>
-										<option value="614">18:0 (g)</option>
-										<option value="615">20:0 (g)</option>
-										<option value="624">22:0 (g)</option>
-										<option value="654">24:0 (g)</option>
-										<option value="645">Fatty acids, total monounsaturated (g)</option>
-										<option value="625">14:1 (g)</option>
-										<option value="697">15:1 (g)</option>
-										<option value="626">16:1 undifferentiated (g)</option>
-										<option value="673">16:1 c (g)</option>
-										<option value="662">16:1 t (g)</option>
-										<option value="687">17:1 (g)</option>
-										<option value="617">18:1 undifferentiated (g)</option>
-										<option value="674">18:1 c (g)</option>
-										<option value="663">18:1 t (g)</option>
-										<option value="859">18:1-11 t (18:1t n-7) (g)</option>
-										<option value="628">20:1 (g)</option>
-										<option value="630">22:1 undifferentiated (g)</option>
-										<option value="676">22:1 c (g)</option>
-										<option value="664">22:1 t (g)</option>
-										<option value="671">24:1 c (g)</option>
-										<option value="646">Fatty acids, total polyunsaturated (g)</option>
-										<option value="618">18:2 undifferentiated (g)</option>
-										<option value="675">18:2 n-6 c,c (g)</option>
-										<option value="670">18:2 CLAs (g)</option>
-										<option value="669">18:2 t,t (g)</option>
-										<option value="666">18:2 i (g)</option>
-										<option value="665">18:2 t not further defined (g)</option>
-										<option value="619">18:3 undifferentiated (g)</option>
-										<option value="851">18:3 n-3 c,c,c (ALA) (g)</option>
-										<option value="685">18:3 n-6 c,c,c (g)</option>
-										<option value="856">18:3i (g)</option>
-										<option value="627">18:4 (g)</option>
-										<option value="672">20:2 n-6 c,c (g)</option>
-										<option value="689">20:3 undifferentiated (g)</option>
-										<option value="852">20:3 n-3 (g)</option>
-										<option value="853">20:3 n-6 (g)</option>
-										<option value="620">20:4 undifferentiated (g)</option>
-										<option value="855">20:4 n-6 (g)</option>
-										<option value="629">20:5 n-3 (EPA) (g)</option>
-										<option value="857">21:5 (g)</option>
-										<option value="858">22:4 (g)</option>
-										<option value="631">22:5 n-3 (DPA) (g)</option>
-										<option value="621">22:6 n-3 (DHA) (g)</option>
-										<option value="605">Fatty acids, total trans (g)</option>
-										<option value="693">Fatty acids, total trans-monoenoic (g)</option>
-										<option value="695">Fatty acids, total trans-polyenoic (g)</option>
-										<option value="601">Cholesterol (mg)</option>
-										<option value="636">Phytosterols (mg)</option>
-										<option value="638">Stigmasterol (mg)</option>
-										<option value="639">Campesterol (mg)</option>
-										<option value="641">Beta-sitosterol (mg)</option>
-										<option value="501">Tryptophan (g)</option>
-										<option value="502">Threonine (g)</option>
-										<option value="503">Isoleucine (g)</option>
-										<option value="504">Leucine (g)</option>
-										<option value="505">Lysine (g)</option>
-										<option value="506">Methionine (g)</option>
-										<option value="507">Cystine (g)</option>
-										<option value="508">Phenylalanine (g)</option>
-										<option value="509">Tyrosine (g)</option>
-										<option value="510">Valine (g)</option>
-										<option value="511">Arginine (g)</option>
-										<option value="512">Histidine (g)</option>
-										<option value="513">Alanine (g)</option>
-										<option value="514">Aspartic acid (g)</option>
-										<option value="515">Glutamic acid (g)</option>
-										<option value="516">Glycine (g)</option>
-										<option value="517">Proline (g)</option>
-										<option value="518">Serine (g)</option>
-										<option value="521">Hydroxyproline (g)</option>
-										<option value="221">Alcohol, ethyl (g)</option>
-										<option value="262">Caffeine (mg)</option>
-										<option value="263">Theobromine (mg)</option>
-									</select>
-								</li>
-							</ul>
-							<button type="button" class="btn btn-default" id="Search">Search</button>
-			      		</div>
-			      	</form>
-			    </div>
-		  	</div>
-		</nav>
-		<div id="modalError" class="modal" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-        				<h3 class="modal-title">Error</h3>
-      				</div>
-					<div class="modal-body">
-						<p>An unexpected error ocurred!</p>
-					</div>
-					<div class="modal-footer">
-        				<button type="button" class="btn btn-default bg-black" data-dismiss="modal">Close</button>
-      				</div>
-				</div>
-			</div>
-		</div>
-		<div class="block-top" id="top"></div>
-		<div id="modalHelp" class="modal fade" role="dialog">
-  			<div class="modal-dialog modal-lg">
-    			<div class="modal-content">
-      				<div class="modal-header">
-        				<h3 class="modal-title">Help</h3>
-      				</div>
-      				<div class="modal-body">
-        				<p>On the top of the page is located the navigation bar. This bar provide both navigation (left side) on the site and search (right side) for food details.</p>
-        				<div class="row">
-        					<div class="col-sm-6">
-        						<img id="" src="img/left-side.png" />
-        					</div>
-        					<div class="col-sm-6">
-        						<img src="img/right-side.png" />
-        					</div>
-        				</div>
-        				<p>The first item (left to right) in the right side have 2 options. The first specifies that the search is for food and the second that the search is for nutrients.</p>
-        				<p>The second item have some filters to the search, like the name of the food, its ID, its food group, and the nutrient ID.</p>
-        				<div class="row">
-        					<div class="col-sm-6">
-        						<img src="img/filter-food.png" />
-        					</div>
-        					<div class="col-sm-6">
-        						<img src="img/filter-nutrient.png" />
-        					</div>
-        				</div>
-        				<p>If you search for a specified ID the result will be the nutrient values of the food, and if you search for a name the result will be a list of foods with that name (or part of it).</p>
-        				<p>Likewise, if you search for a nutrient ID the result will be the foods with that nutrient.</p>
-      				</div>
-      				<div class="modal-footer">
-        				<button type="button" class="btn btn-default bg-black" data-dismiss="modal">Close</button>
-      				</div>
-    			</div>
-  			</div>
-		</div>
-		<div id="modalTable" class="modal fade" role="dialog">
-  			<div class="modal-dialog">
-    			<div class="modal-content">
-      				<div class="modal-header" id="reportInfo">
-      				</div>
-      				<div class="modal-body">
-        				<table class="table table-striped table-responsive table-medium" id="tableReport">
-							<thead>
-								<tr>
-									<th class="table-col-big" data-name="Nutrient">Nutrient</th>
-									<th class="table-col-small" data-name="Nutrient">ID</th>
-									<th class="table-col-small" data-details="Value">Value*</th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-						<p class="text-left">*Values per 100g</p>
-      				</div>
-      				<div class="modal-footer">
-        				<button type="button" class="btn btn-default bg-black" data-dismiss="modal">Close</button>
-      				</div>
-    			</div>
-  			</div>
-		</div>
-		<div class="container-fluid text-center bg-black" id="about">
-			<div class="row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-8">
-					<h1>About</h1>
-					<h2>USDA</h2>
-					<p>USDA (United States Department of Agriculture) provide leadership on food, agriculture, natural resources, rural development, nutrition, and related issues based on public policy, the best available science, and effective management.</p>
-					<p>They have a vision to provide economic opportunity through innovation, helping rural America to thrive; to promote agriculture production that better nourishes Americans while also helping feed others throughout the world; and to preserve their Nation's natural resources through conservation, restored forests, improved watersheds, and healthy private working lands. And their strategic plan serves as a roadmap for the Department to help ensure they achieve their mission and implement their vision.</p>
-					<p>The Agricultural Research Service (ARS) is the U.S. Department of Agriculture's chief scientific in-house research agency. Their job is finding solutions to agricultural problems that affect Americans every day from field to table. And they provide the USDA National Nutrient Database for Standard Reference and the USDA Branded Food Products Database (which API is used in this site).</p>
-					<h2>Nutritudy</h2>
-					<p>This site use the USDA National Nutrient Database to bring to the user detailed information about all types of food, like the nutritional info of the food sought. For more info about how to search click in the help button.</p>
-				</div>
-				<div class="col-sm-2"></div>
-			</div>
-		</div>
-		<div class="container-fluid text-center bg-white" id="result">
-			<h1>Search Result</h1>
-			<div class="row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-8">
-					<div id="searchFoodTable">
-						<table class="table table-striped table-responsive table-medium" id="tableFood">
-							<thead>
-								<tr>
-									<th class="table-col-small text-center" data-id="ID">ID</th>
-									<th class="table-col-big text-center" data-name="Name">Name</th>
-									<th class="table-col-big text-center" data-group="Gruop">Group</th>
-									<th class="table-col-small text-center" data-details="Details">Details</th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-						<nav>
-  							<ul class="pagination">
-    							
-  							</ul>
-						</nav>
-					</div>
-					<div id="searchNutrientTable">
-						<table class="table table-striped table-responsive table-medium" id="tableNutrient">
-							<thead>
-								<tr>
-									<th class="table-col-small text-center" data-id="ID">ID</th>
-									<th class="table-col-big text-center" data-name="Name">Name</th>
-									<th class="table-col-small text-center" data-details="Details">Details</th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-						<nav>
-  							<ul class="pagination">
-    							
-  							</ul>
-						</nav>
-					</div>
-				</div>
-				<div class="col-sm-2"></div>
-			</div>
-		</div>
-	</body>
+    <head>
+        <title>Nutritudy</title>
+        <meta charset='utf-8'>
+        <script src="javascript/jquery-1.12.3.js"></script>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap-select.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="javascript/jquery-1.12.3.js"></script>
+        <script src="javascript/bootstrap.min.js"></script>
+        <script src="javascript/bootstrap-select.js"></script>
+        <script src="javascript/script.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse opacity">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#top"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="http://www.ars.usda.gov/main/site_main.htm?modecode=80-40-05-25" target="_blank">USDA site</a></li>
+                        <li><a href="#top">About</a></li>
+                        <li><a href="#modalHelp" data-toggle="modal">Help</a></li>
+                    </ul>
+                    <p class="navbar-text">Nutritudy</p>
+                    <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <select class="selectpicker show-menu-arrow" id="selectFoodNutrient">
+                                <option value="Food">Food</option>
+                                <option value="Nutrient">Nutrient</option>
+                            </select>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><input class="form-control" type="text" placeholder="Name" id="filterName"></input></li>
+                                <li><input class="form-control" type="text" placeholder="ID" id="filterID"></input></li>
+                                <li>
+                                    <select class="select" id="filterGroup">
+                                        <option value>All food groups</option>
+                                        <option value="American Indian/Alaska Native Foods">American Indian/Alaska Native Foods</option>
+                                        <option value="Baby Foods">Baby Foods</option>
+                                        <option value="Baked Products">Baked Products</option>
+                                        <option value="Beef Products">Beef Products</option>
+                                        <option value="Beverages">Beverages</option>
+                                        <option value="Branded Foods Products Database">Branded Foods Products Database</option>
+                                        <option value="Breakfast Cereals">Breakfast Cereals</option>
+                                        <option value="Cereal Grains and Pasta">Cereal Grains and Pasta</option>
+                                        <option value="Dairy and Egg Products">Dairy and Egg Products</option>
+                                        <option value="Fast Foods">Fast Foods</option>
+                                        <option value="Fats and Oils">Fats and Oils</option>
+                                        <option value="Finfish and Shellfish Products">Finfish and Shellfish Products</option>
+                                        <option value="Fruits and Fruit Juices">Fruits and Fruit Juices</option>
+                                        <option value="Lamb, Veal, and Game Products">Lamb, Veal, and Game Products</option>
+                                        <option value="Legumes and Legume Products">Legumes and Legume Products</option>
+                                        <option value="Meals, Entrees, and Side Dishes">Meals, Entrees, and Side Dishes</option>
+                                        <option value="Nut and Seed Products">Nut and Seed Products</option>
+                                        <option value="Pork Products">Pork Products</option>
+                                        <option value="Poultry Products">Poultry Products</option>
+                                        <option value="Restaurant Foods">Restaurant Foods</option>
+                                        <option value="Sausages and Luncheon Meats">Sausages and Luncheon Meats</option>
+                                        <option value="Snacks">Snacks</option>
+                                        <option value="Soups, Sauces, and Gravies">Soups, Sauces, and Gravies</option>
+                                        <option value="Spices and Herbs">Spices and Herbs</option>
+                                        <option value="Sweets">Sweets</option>
+                                        <option value="Vegetables and Vegetable Products">Vegetables and Vegetable Products</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <select class="select" id="filterNutrient">
+                                        <option value="">Select nutrient ...</option>
+                                        <option value="255">Water (g)</option>
+                                        <option value="208">Energy (kcal)</option>
+                                        <option value="268">Energy (kJ)</option>
+                                        <option value="203">Protein (g)</option>
+                                        <option value="204">Total lipid (fat) (g)</option>
+                                        <option value="207">Ash (g)</option>
+                                        <option value="205">Carbohydrate, by difference (g)</option>
+                                        <option value="291">Fiber, total dietary (g)</option>
+                                        <option value="269">Sugars, total (g)</option>
+                                        <option value="210">Sucrose (g)</option>
+                                        <option value="211">Glucose (dextrose) (g)</option>
+                                        <option value="212">Fructose (g)</option>
+                                        <option value="213">Lactose (g)</option>
+                                        <option value="214">Maltose (g)</option>
+                                        <option value="287">Galactose (g)</option>
+                                        <option value="209">Starch (g)</option>
+                                        <option value="301">Calcium, Ca (mg)</option>
+                                        <option value="303">Iron, Fe (mg)</option>
+                                        <option value="304">Magnesium, Mg (mg)</option>
+                                        <option value="305">Phosphorus, P (mg)</option>
+                                        <option value="306">Potassium, K (mg)</option>
+                                        <option value="307">Sodium, Na (mg)</option>
+                                        <option value="309">Zinc, Zn (mg)</option>
+                                        <option value="312">Copper, Cu (mg)</option>
+                                        <option value="315">Manganese, Mn (mg)</option>
+                                        <option value="317">Selenium, Se (µg)</option>
+                                        <option value="313">Fluoride, F (µg)</option>
+                                        <option value="401">Vitamin C, total ascorbic acid (mg)</option>
+                                        <option value="404">Thiamin (mg)</option>
+                                        <option value="405">Riboflavin (mg)</option>
+                                        <option value="406">Niacin (mg)</option>
+                                        <option value="410">Pantothenic acid (mg)</option>
+                                        <option value="415">Vitamin B-6 (mg)</option>
+                                        <option value="417">Folate, total (µg)</option>
+                                        <option value="431">Folic acid (µg)</option>
+                                        <option value="432">Folate, food (µg)</option>
+                                        <option value="435">Folate, DFE (µg)</option>
+                                        <option value="421">Choline, total (mg)</option>
+                                        <option value="454">Betaine (mg)</option>
+                                        <option value="418">Vitamin B-12 (µg)</option>
+                                        <option value="578">Vitamin B-12, added (µg)</option>
+                                        <option value="320">Vitamin A, RAE (µg)</option>
+                                        <option value="319">Retinol (µg)</option>
+                                        <option value="321">Carotene, beta (µg)</option>
+                                        <option value="322">Carotene, alpha (µg)</option>
+                                        <option value="334">Cryptoxanthin, beta (µg)</option>
+                                        <option value="318">Vitamin A, IU (IU)</option>
+                                        <option value="337">Lycopene (µg)</option>
+                                        <option value="338">Lutein + zeaxanthin (µg)</option>
+                                        <option value="323">Vitamin E (alpha-tocopherol) (mg)</option>
+                                        <option value="573">Vitamin E, added (mg)</option>
+                                        <option value="341">Tocopherol, beta (mg)</option>
+                                        <option value="342">Tocopherol, gamma (mg)</option>
+                                        <option value="343">Tocopherol, delta (mg)</option>
+                                        <option value="344">Tocotrienol, alpha (mg)</option>
+                                        <option value="345">Tocotrienol, beta (mg)</option>
+                                        <option value="346">Tocotrienol, gamma (mg)</option>
+                                        <option value="347">Tocotrienol, delta (mg)</option>
+                                        <option value="328">Vitamin D (D2 + D3) (µg)</option>
+                                        <option value="325">Vitamin D2 (ergocalciferol) (µg)</option>
+                                        <option value="326">Vitamin D3 (cholecalciferol) (µg)</option>
+                                        <option value="324">Vitamin D (IU)</option>
+                                        <option value="430">Vitamin K (phylloquinone) (µg)</option>
+                                        <option value="429">Dihydrophylloquinone (µg)</option>
+                                        <option value="428">Menaquinone-4 (µg)</option>
+                                        <option value="606">Fatty acids, total saturated (g)</option>
+                                        <option value="607">4:0 (g)</option>
+                                        <option value="608">6:0 (g)</option>
+                                        <option value="609">8:0 (g)</option>
+                                        <option value="610">10:0 (g)</option>
+                                        <option value="611">12:0 (g)</option>
+                                        <option value="696">13:0 (g)</option>
+                                        <option value="612">14:0 (g)</option>
+                                        <option value="652">15:0 (g)</option>
+                                        <option value="613">16:0 (g)</option>
+                                        <option value="653">17:0 (g)</option>
+                                        <option value="614">18:0 (g)</option>
+                                        <option value="615">20:0 (g)</option>
+                                        <option value="624">22:0 (g)</option>
+                                        <option value="654">24:0 (g)</option>
+                                        <option value="645">Fatty acids, total monounsaturated (g)</option>
+                                        <option value="625">14:1 (g)</option>
+                                        <option value="697">15:1 (g)</option>
+                                        <option value="626">16:1 undifferentiated (g)</option>
+                                        <option value="673">16:1 c (g)</option>
+                                        <option value="662">16:1 t (g)</option>
+                                        <option value="687">17:1 (g)</option>
+                                        <option value="617">18:1 undifferentiated (g)</option>
+                                        <option value="674">18:1 c (g)</option>
+                                        <option value="663">18:1 t (g)</option>
+                                        <option value="859">18:1-11 t (18:1t n-7) (g)</option>
+                                        <option value="628">20:1 (g)</option>
+                                        <option value="630">22:1 undifferentiated (g)</option>
+                                        <option value="676">22:1 c (g)</option>
+                                        <option value="664">22:1 t (g)</option>
+                                        <option value="671">24:1 c (g)</option>
+                                        <option value="646">Fatty acids, total polyunsaturated (g)</option>
+                                        <option value="618">18:2 undifferentiated (g)</option>
+                                        <option value="675">18:2 n-6 c,c (g)</option>
+                                        <option value="670">18:2 CLAs (g)</option>
+                                        <option value="669">18:2 t,t (g)</option>
+                                        <option value="666">18:2 i (g)</option>
+                                        <option value="665">18:2 t not further defined (g)</option>
+                                        <option value="619">18:3 undifferentiated (g)</option>
+                                        <option value="851">18:3 n-3 c,c,c (ALA) (g)</option>
+                                        <option value="685">18:3 n-6 c,c,c (g)</option>
+                                        <option value="856">18:3i (g)</option>
+                                        <option value="627">18:4 (g)</option>
+                                        <option value="672">20:2 n-6 c,c (g)</option>
+                                        <option value="689">20:3 undifferentiated (g)</option>
+                                        <option value="852">20:3 n-3 (g)</option>
+                                        <option value="853">20:3 n-6 (g)</option>
+                                        <option value="620">20:4 undifferentiated (g)</option>
+                                        <option value="855">20:4 n-6 (g)</option>
+                                        <option value="629">20:5 n-3 (EPA) (g)</option>
+                                        <option value="857">21:5 (g)</option>
+                                        <option value="858">22:4 (g)</option>
+                                        <option value="631">22:5 n-3 (DPA) (g)</option>
+                                        <option value="621">22:6 n-3 (DHA) (g)</option>
+                                        <option value="605">Fatty acids, total trans (g)</option>
+                                        <option value="693">Fatty acids, total trans-monoenoic (g)</option>
+                                        <option value="695">Fatty acids, total trans-polyenoic (g)</option>
+                                        <option value="601">Cholesterol (mg)</option>
+                                        <option value="636">Phytosterols (mg)</option>
+                                        <option value="638">Stigmasterol (mg)</option>
+                                        <option value="639">Campesterol (mg)</option>
+                                        <option value="641">Beta-sitosterol (mg)</option>
+                                        <option value="501">Tryptophan (g)</option>
+                                        <option value="502">Threonine (g)</option>
+                                        <option value="503">Isoleucine (g)</option>
+                                        <option value="504">Leucine (g)</option>
+                                        <option value="505">Lysine (g)</option>
+                                        <option value="506">Methionine (g)</option>
+                                        <option value="507">Cystine (g)</option>
+                                        <option value="508">Phenylalanine (g)</option>
+                                        <option value="509">Tyrosine (g)</option>
+                                        <option value="510">Valine (g)</option>
+                                        <option value="511">Arginine (g)</option>
+                                        <option value="512">Histidine (g)</option>
+                                        <option value="513">Alanine (g)</option>
+                                        <option value="514">Aspartic acid (g)</option>
+                                        <option value="515">Glutamic acid (g)</option>
+                                        <option value="516">Glycine (g)</option>
+                                        <option value="517">Proline (g)</option>
+                                        <option value="518">Serine (g)</option>
+                                        <option value="521">Hydroxyproline (g)</option>
+                                        <option value="221">Alcohol, ethyl (g)</option>
+                                        <option value="262">Caffeine (mg)</option>
+                                        <option value="263">Theobromine (mg)</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" id="Search">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div id="modalError" class="modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Error</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>An unexpected error ocurred!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default bg-black" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-top" id="top"></div>
+        <div id="modalHelp" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Help</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>On the top of the page is located the navigation bar. This bar provide both navigation (left side) on the site and search (right side) for food details.</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <img id="" src="img/left-side.png" />
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="img/right-side.png" />
+                            </div>
+                        </div>
+                        <p>The first item (left to right) in the right side have 2 options. The first specifies that the search is for food and the second that the search is for nutrients.</p>
+                        <p>The second item have some filters to the search, like the name of the food, its ID, its food group, and the nutrient ID.</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <img src="img/filter-food.png" />
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="img/filter-nutrient.png" />
+                            </div>
+                        </div>
+                        <p>If you search for a specified ID the result will be the nutrient values of the food, and if you search for a name the result will be a list of foods with that name (or part of it).</p>
+                        <p>Likewise, if you search for a nutrient ID the result will be the foods with that nutrient.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default bg-black" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modalTable" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" id="reportInfo">
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped table-responsive table-medium" id="tableReport">
+                            <thead>
+                                <tr>
+                                    <th class="table-col-big" data-name="Nutrient">Nutrient</th>
+                                    <th class="table-col-small" data-name="Nutrient">ID</th>
+                                    <th class="table-col-small" data-details="Value">Value*</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <p class="text-left">*Values per 100g</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default bg-black" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid text-center bg-black" id="about">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <h1>About</h1>
+                    <h2>USDA</h2>
+                    <p>USDA (United States Department of Agriculture) provide leadership on food, agriculture, natural resources, rural development, nutrition, and related issues based on public policy, the best available science, and effective management.</p>
+                    <p>They have a vision to provide economic opportunity through innovation, helping rural America to thrive; to promote agriculture production that better nourishes Americans while also helping feed others throughout the world; and to preserve their Nation's natural resources through conservation, restored forests, improved watersheds, and healthy private working lands. And their strategic plan serves as a roadmap for the Department to help ensure they achieve their mission and implement their vision.</p>
+                    <p>The Agricultural Research Service (ARS) is the U.S. Department of Agriculture's chief scientific in-house research agency. Their job is finding solutions to agricultural problems that affect Americans every day from field to table. And they provide the USDA National Nutrient Database for Standard Reference and the USDA Branded Food Products Database (which API is used in this site).</p>
+                    <h2>Nutritudy</h2>
+                    <p>This site use the USDA National Nutrient Database to bring to the user detailed information about all types of food, like the nutritional info of the food sought. For more info about how to search click in the help button.</p>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+        <div class="container-fluid text-center bg-white" id="result">
+            <h1>Search Result</h1>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <div id="searchFoodTable">
+                        <table class="table table-striped table-responsive table-medium" id="tableFood">
+                            <thead>
+                                <tr>
+                                    <th class="table-col-small text-center" data-id="ID">ID</th>
+                                    <th class="table-col-big text-center" data-name="Name">Name</th>
+                                    <th class="table-col-big text-center" data-group="Gruop">Group</th>
+                                    <th class="table-col-small text-center" data-details="Details">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <nav>
+                            <ul class="pagination">
+                            </ul>
+                        </nav>
+                    </div>
+                    <div id="searchNutrientTable">
+                        <table class="table table-striped table-responsive table-medium" id="tableNutrient">
+                            <thead>
+                                <tr>
+                                    <th class="table-col-small text-center" data-id="ID">ID</th>
+                                    <th class="table-col-big text-center" data-name="Name">Name</th>
+                                    <th class="table-col-small text-center" data-details="Details">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <nav>
+                            <ul class="pagination">
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+    </body>
 </html>
