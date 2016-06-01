@@ -29,7 +29,7 @@ var api = {
 }
 
 function inicializacao(){
-    hide(['#filterNutrient', '#searchFoodTable', '#searchNutrientTable']);
+    hide(['#filterNutrient', '#searchFoodTable', '#searchNutrientTable', '#result h1']);
 }
 
 function hide(itens){
@@ -41,6 +41,12 @@ function hide(itens){
 function show(itens){
     for(var x=0; x<itens.length; x++){
         $(itens[x]).show();
+    }
+}
+
+function fade(itens){
+    for(var x=0; x<itens.length; x++){
+        $(itens[x]).fadeIn();
     }
 }
 
@@ -171,6 +177,9 @@ function buildTable(data, table){
         result += item[x].ndbno + '></span></td></tr>';
     }
     $(table).html(result);
+    $('html, body').animate({
+        scrollTop: $("#result").offset().top
+    }, 500);
 }
 
 function buildModal(data){
@@ -216,7 +225,7 @@ function food(data, searchType, getLength){
     else{
         buildTable(data, '#tableFood tbody');
         hide(['#searchNutrientTable']);
-        show(['#searchFoodTable']);
+        fade(['#searchFoodTable', '#result h1']);
     }
 }
 
@@ -228,7 +237,7 @@ function nutrient(data, getLength){
     }
     buildTable(data, '#tableNutrient tbody');
     hide(['#searchFoodTable']);
-    show(['#searchNutrientTable']);
+    fade(['#searchNutrientTable', '#result h1']);
 }
 
 function reportRequest(){
