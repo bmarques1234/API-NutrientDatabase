@@ -19,6 +19,11 @@ $(document).ready(function(){
         var value = $(this).data('id');
         details(value);
     });
+    $(document).keypress(function(e) {
+        if (e.which == 13){
+            checkSelectFilter();
+        }
+    })
 });
 
 var api = {
@@ -53,6 +58,12 @@ function fade(itens){
 function stopDropdown(e){
     e.stopPropagation();
     e.preventDefault();
+}
+
+function scroll(element){
+    $('html, body').animate({
+        scrollTop: $(element).offset().top
+    }, 500);
 }
 
 function onlyNumbers(e){
@@ -177,9 +188,7 @@ function buildTable(data, table){
         result += item[x].ndbno + '></span></td></tr>';
     }
     $(table).html(result);
-    $('html, body').animate({
-        scrollTop: $("#result").offset().top
-    }, 500);
+    scroll('#result');
 }
 
 function buildModal(data){
