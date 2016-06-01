@@ -42,3 +42,9 @@ th[data-details="Details"]{
 	height: 400px;
 	overflow: scroll;
 }
+@media only screen and (max-width: 991px){
+	img{
+		max-width: 250px;
+		max-height: 100px;
+	}
+}
