@@ -198,11 +198,10 @@ function buildTable(data, table){
 }
 
 function buildModalTable(data, group){
-    var result = '<tr><td class="bg-gray" colspan="3">' + group + '</td></tr>';
+    var result = '<tr><td class="bg-gray">' + group + '</td><td style="font-size=10px" class="bg-gray">*Values per 100g</td></tr>';
     for(var x=0;x<data.report.food.nutrients.length;x++){
         if(data.report.food.nutrients[x].group===group){
             result += '<tr><td>' + data.report.food.nutrients[x].name + '</td>';
-            result += '<td>' + data.report.food.nutrients[x].nutrient_id + '</td>';
             result += '<td>' + data.report.food.nutrients[x].value + ' '; 
             result += data.report.food.nutrients[x].unit + '</td>';
         }
@@ -223,33 +222,23 @@ function buildModal(data){
 }
 
 function findImage(name){
-    var params = {
-            // Request parameters
-            "q": name,
-            "count": "10",
-            "offset": "0",
-            "mkt": "en-us",
-            "safeSearch": "Moderate",
-        };
-        $.ajax({
-            url: "https://bingapis.azure-api.net/api/v5/images/search?" + $.param(params),
-            beforeSend: function(xhrObj){
-                // Request headers
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","908334a9cf724451b473d998c8433ddf");
-            },
-            type: "GET",
-            // Request body
-            data: "{body}",
-            success: function(data){
-                console.log(data);
-                var result = '<img src="' + data.value[0].contentUrl + '" class="foodImage" />';
-                $('#foodImage').html(result);
-            }
-        })
-        .done(function(data) {
-            
-        })
-    }
+    $.ajax({
+        url: 'https://bingapis.azure-api.net/api/v5/images/search?q=' + name + '&count=1&offset=0&mkt=en-us&safeSearch=Moderate',
+        beforeSend: function(xhrObj){
+            xhrObj.setRequestHeader('Ocp-Apim-Subscription-Key','908334a9cf724451b473d998c8433ddf');
+        },
+        type: "GET",
+        data: "{body}",
+        success: function(data){
+            console.log(data);
+            var result = '<img src="' + data.value[0].contentUrl + '" class="foodImage" />';
+            $('#foodImage').html(result);
+        }
+    })
+    .done(function(data) {
+        
+    })
+}
 
 function translate(){
     var result;
@@ -343,5 +332,7 @@ function pagination(value){
 function details(value){
     var url = api.base + 'reports/?type=b&ndbno=' + value + api.key;
     ajax(url, 'foodReport');
+    $('#tableReport tbody').html('');
+    $('#foodImage').html('');
     $('#modalTable').modal();
 }
