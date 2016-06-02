@@ -156,6 +156,7 @@ function buildAlertMessage(){
 
 function buildUrl(type){
     var url;
+    var name = translate();
     if(type==='Food'){
         if($('#filterID').val()!==''){
             url = api.base + 'reports/?type=b&ndbno=' + $('#filterID').val() + api.key;
@@ -163,7 +164,7 @@ function buildUrl(type){
         else{
             url = api.base + 'search/?';
             if($('#filterName').val()!==''){
-                url += 'q=' + $('#filterName').val() + '&';
+                url += 'q=' + name + '&';
             }
             if ($('#filterGroup').val()!==''){
                 url += 'fg=' + $('#filterGroup').val();
@@ -217,6 +218,22 @@ function buildModal(data){
     result += buildModalTable(data, 'Lipids');
     result += buildModalTable(data, 'Other');
     $('#tableReport tbody').html(result);
+}
+
+function translate(){
+    var result;
+    var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160602T123405Z.3eeccb01dbaf1181.330bdbcd345984617733c38cc2f333050319585d';
+    url += '&text=' + $('#filterName').val() + '&lang=pt-en&[options=1]';
+    $.ajax({
+        url: url,
+        type: 'GET',
+        async: false,
+        success: function(data){
+            result = data.text[0];
+        }
+    })
+    console.log(result);
+    return result;
 }
 
 function ajax(url, searchType, getLength){
