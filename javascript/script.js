@@ -90,6 +90,7 @@ function checkErrors(data){
 }
 
 function checkSelectFilter(){
+    findImage();
     if($('#selectFoodNutrient').val()==='Food'){
         checkFilters();
     }
@@ -218,7 +219,37 @@ function buildModal(data){
     result += buildModalTable(data, 'Lipids');
     result += buildModalTable(data, 'Other');
     $('#tableReport tbody').html(result);
+    findImage(data.report.food.name);
 }
+
+function findImage(name){
+    var params = {
+            // Request parameters
+            "q": name,
+            "count": "10",
+            "offset": "0",
+            "mkt": "en-us",
+            "safeSearch": "Moderate",
+        };
+        $.ajax({
+            url: "https://bingapis.azure-api.net/api/v5/images/search?" + $.param(params),
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","908334a9cf724451b473d998c8433ddf");
+            },
+            type: "GET",
+            // Request body
+            data: "{body}",
+            success: function(data){
+                console.log(data);
+                var result = '<img src="' + data.value[0].contentUrl + '" class="foodImage" />';
+                $('#foodImage').html(result);
+            }
+        })
+        .done(function(data) {
+            
+        })
+    }
 
 function translate(){
     var result;
@@ -232,7 +263,6 @@ function translate(){
             result = data.text[0];
         }
     })
-    console.log(result);
     return result;
 }
 

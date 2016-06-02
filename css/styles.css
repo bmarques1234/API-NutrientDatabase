@@ -1,3 +1,7 @@
+.foodImage{
+    max-width: 500px;
+    max-height: 500px;
+}
 .select{
     width: 100%;
     font-size: 16px;
@@ -43,7 +47,7 @@ th[data-details="Details"]{
 }
 #modalTable .modal-dialog .modal-content .modal-body{
     height: 400px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 @media only screen and (max-width: 991px){
     img{
