@@ -18,8 +18,12 @@ $(document).ready(function(){
     $('#result').on('click', '.glyphicon-search', function(){
         details(this);
     });
-    $('.navbar-default').on('click', '.dropdown li', function(e){
-        checkDropdownItem(this);
+    $('.navbar-default').on('click', '#dropdownFilterGroup .dropdown li', function(e){
+        checkDropdownItem(this, false);
+        stopDropdown(e);
+    });
+    $('.navbar-default').on('click', '#dropdownFilterNutrient .dropdown li', function(e){
+        checkDropdownItem(this, true);
         stopDropdown(e);
     });
     $(document).keypress(function(e) {
@@ -31,7 +35,7 @@ $(document).ready(function(){
 
 var api = {
     base:  'http://api.nal.usda.gov/ndb/',
-    key: '&format=json&api_key=iEJf9ZjrUpWcSSKuvekPltYZrO113PbcJxCqvzEC',
+    key: 'format=json&api_key=iEJf9ZjrUpWcSSKuvekPltYZrO113PbcJxCqvzEC',
     active: '',
     paginationLength: '',
     selectFilterQuantity: 0
@@ -89,15 +93,21 @@ function clearFilterValue(){
     $('#filterNutrient').val('');
 }
 
-function checkDropdownItem(item){
-    if($(item).data("checked")===false && api.selectFilterQuantity<3){
+function checkDropdownItem(item, enable){
+    if(enable===false){
+        var c = 1;
+    }
+    else {
+        var c = 3;
+    }
+    if($(item).data('checked')===false && api.selectFilterQuantity<c){
         $(item).append('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>');
-        $(item).data("checked", true);
+        $(item).data('checked', true);
         api.selectFilterQuantity++;
     }
-    else if($(item).data("checked")===true){
+    else if($(item).data('checked')===true){
         $(item).html($(item).data("name") + ' ');
-        $(item).data("checked", false);
+        $(item).data('checked', false);
         api.selectFilterQuantity--;
     }
 }
@@ -139,6 +149,11 @@ function updateFilters(){
         $('#filterGroup').next('ul').hide();
         show(['#filterNutrient', '#filterNutrient > ul']);
     }
+    $('.dropdown li').each(function(){
+        $(this).data('checked', false);
+        $(this).html($(this).data("name") + ' ');
+    })
+    api.selectFilterQuantity = 0;
 }
 
 function itemTable(data, table){
@@ -178,26 +193,30 @@ function buildAlertMessage(){
 
 function buildUrl(type){
     var url;
-    var name = translate();
     if(type==='Food'){
+        var name = translate();
         if($('#filterID').val()!==''){
-            url = api.base + 'reports/?type=b&ndbno=' + $('#filterID').val() + api.key;
+            url = api.base + 'reports/?' + api.key + '&type=b&ndbno=' + $('#filterID').val();
         }
         else{
-            url = api.base + 'search/?';
+            url = api.base + 'search/?' + api.key;
             if($('#filterName').val()!==''){
-                url += 'q=' + name + '&';
+                url += '&q=' + name;
             }
-            if ($('#filterGroup').val()!==''){
-                url += 'fg=' + $('#filterGroup').val();
-            }
-            url += api.key;
+            $('#dropdownFilterGroup .dropdown li').each(function(){
+                if($(this).data('checked')===true){
+                    url += '&fg=' + $(this).data('value');
+                }
+            })
         }
     }
     else {
-        if($('#filterNutrient').val()!==''){
-            url = api.base + 'nutrients/?nutrients=' + $('#filterNutrient').val() + api.key;
-        }
+        url = api.base + 'nutrients/?' + api.key;
+        $('#dropdownFilterNutrient .dropdown li').each(function(){
+            if($(this).data('checked')===true){
+                url += '&nutrients=' + $(this).data('value');
+            }
+        })
     }
     return url;
 }
@@ -251,7 +270,6 @@ function findImage(name){
         type: "GET",
         data: "{body}",
         success: function(data){
-            console.log(data);
             var result = '<img src="' + data.value[0].contentUrl + '" class="foodImage" />';
             $('#foodImage').html(result);
         }
@@ -351,7 +369,7 @@ function pagination(item){
 }
 
 function details(item){
-    var url = api.base + 'reports/?type=b&ndbno=' + $(item).data('id') + api.key;
+    var url = api.base + 'reports/?'+ api.key + '&type=b&ndbno=' + $(item).data('id') ;
     ajax(url, 'foodReport');
     $('#tableReport tbody').html('');
     $('#foodImage').html('');
