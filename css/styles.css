@@ -39,6 +39,11 @@
 .glyphicon-search{
     cursor: pointer;
 }
+
+.dropdown{
+    height: 100px;
+    overflow-y: scroll;
+}
 th[data-id="ID"]{
     border-top-left-radius: 10px;
 }
@@ -48,13 +53,15 @@ th[data-details="Details"]{
 li{
     list-style: none;
 }
-.dropdown{
-    height: 100px;
-    overflow-y: scroll;
-}
 #modalTable .modal-dialog .modal-content .modal-body{
     height: 400px;
     overflow-y: scroll;
+}
+#filterGroup{
+    border-bottom: solid black 1px;
+}
+#filterNutrient{
+    border-bottom: solid black 1px;
 }
 @media only screen and (max-width: 991px){
     img{

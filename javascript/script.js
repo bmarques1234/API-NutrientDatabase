@@ -19,11 +19,11 @@ $(document).ready(function(){
         details(this);
     });
     $('.navbar-default').on('click', '#dropdownFilterGroup .dropdown li', function(e){
-        checkDropdownItem(this, false);
+        checkDropdownItem(this, false, '#filterGroup');
         stopDropdown(e);
     });
     $('.navbar-default').on('click', '#dropdownFilterNutrient .dropdown li', function(e){
-        checkDropdownItem(this, true);
+        checkDropdownItem(this, true, '#filterNutrient');
         stopDropdown(e);
     });
     $(document).keypress(function(e) {
@@ -93,8 +93,8 @@ function clearFilterValue(){
     $('#filterNutrient').val('');
 }
 
-function checkDropdownItem(item, enable){
-    if(enable===false){
+function checkDropdownItem(item, enableMultipleValues, title){
+    if(enableMultipleValues===false){
         var c = 1;
     }
     else {
@@ -103,11 +103,26 @@ function checkDropdownItem(item, enable){
     if($(item).data('checked')===false && api.selectFilterQuantity<c){
         $(item).append('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>');
         $(item).data('checked', true);
+        if($(title).data('name')===$(title).data('value')){
+            var titleName = $(item).data('name') + ' ';
+        }
+        else {
+            var titleName = $(item).data('name') + ' ' + $(title).data('name');
+        }
+        $(title).data('name', titleName);
+        $(title).html($(title).data('name') + ' <span class="caret"></span>');
         api.selectFilterQuantity++;
     }
     else if($(item).data('checked')===true){
-        $(item).html($(item).data("name") + ' ');
+        $(item).html($(item).data('name') + ' ');
         $(item).data('checked', false);
+        var str = $(title).data('name');
+        var titleName = str.replace($(item).data('name') + ' ', '');
+        if(titleName===''){
+            titleName = $(title).data('value');
+        }
+        $(title).data('name', titleName);
+        $(title).html($(title).data('name') + ' <span class="caret"></span>');
         api.selectFilterQuantity--;
     }
 }
@@ -153,6 +168,10 @@ function updateFilters(){
         $(this).data('checked', false);
         $(this).html($(this).data("name") + ' ');
     })
+    $('#filterGroup').data('name', $('#filterGroup').data('value'));
+    $('#filterGroup').html($('#filterGroup').data('name') + ' <span class="caret"></span>');
+    $('#filterNutrient').data('name', $('#filterNutrient').data('value'));
+    $('#filterNutrient').html($('#filterNutrient').data('name') + ' <span class="caret"></span>');
     api.selectFilterQuantity = 0;
 }
 
