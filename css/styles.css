@@ -45,6 +45,13 @@ th[data-id="ID"]{
 th[data-details="Details"]{
     border-top-right-radius: 10px;  
 }
+li{
+    list-style: none;
+}
+.dropdown{
+    height: 100px;
+    overflow-y: scroll;
+}
 #modalTable .modal-dialog .modal-content .modal-body{
     height: 400px;
     overflow-y: scroll;

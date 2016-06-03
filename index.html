@@ -6,12 +6,12 @@
         <script src="javascript/jquery-1.12.3.js"></script>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/bootstrap-select.css">
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/bootstrap-select.css">
         <script src="javascript/jquery-1.12.3.js"></script>
         <script src="javascript/bootstrap.min.js"></script>
+        <script src="javascript/script.js"></script> 
         <script src="javascript/bootstrap-select.js"></script>
-        <script src="javascript/script.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top navbar-inverse opacity">
@@ -43,189 +43,189 @@
                                 <li><input class="form-control" type="text" placeholder="Name" id="filterName"></input></li>
                                 <li><input class="form-control" type="text" placeholder="ID" id="filterID"></input></li>
                                 <li>
-                                    <select class="select" id="filterGroup">
-                                        <option value>All food groups</option>
-                                        <option value="American Indian/Alaska Native Foods">American Indian/Alaska Native Foods</option>
-                                        <option value="Baby Foods">Baby Foods</option>
-                                        <option value="Baked Products">Baked Products</option>
-                                        <option value="Beef Products">Beef Products</option>
-                                        <option value="Beverages">Beverages</option>
-                                        <option value="Branded Foods Products Database">Branded Foods Products Database</option>
-                                        <option value="Breakfast Cereals">Breakfast Cereals</option>
-                                        <option value="Cereal Grains and Pasta">Cereal Grains and Pasta</option>
-                                        <option value="Dairy and Egg Products">Dairy and Egg Products</option>
-                                        <option value="Fast Foods">Fast Foods</option>
-                                        <option value="Fats and Oils">Fats and Oils</option>
-                                        <option value="Finfish and Shellfish Products">Finfish and Shellfish Products</option>
-                                        <option value="Fruits and Fruit Juices">Fruits and Fruit Juices</option>
-                                        <option value="Lamb, Veal, and Game Products">Lamb, Veal, and Game Products</option>
-                                        <option value="Legumes and Legume Products">Legumes and Legume Products</option>
-                                        <option value="Meals, Entrees, and Side Dishes">Meals, Entrees, and Side Dishes</option>
-                                        <option value="Nut and Seed Products">Nut and Seed Products</option>
-                                        <option value="Pork Products">Pork Products</option>
-                                        <option value="Poultry Products">Poultry Products</option>
-                                        <option value="Restaurant Foods">Restaurant Foods</option>
-                                        <option value="Sausages and Luncheon Meats">Sausages and Luncheon Meats</option>
-                                        <option value="Snacks">Snacks</option>
-                                        <option value="Soups, Sauces, and Gravies">Soups, Sauces, and Gravies</option>
-                                        <option value="Spices and Herbs">Spices and Herbs</option>
-                                        <option value="Sweets">Sweets</option>
-                                        <option value="Vegetables and Vegetable Products">Vegetables and Vegetable Products</option>
-                                    </select>
+                                    <a href="#" class="selectDropdown" id="filterGroup">All food groups <span class="caret"></span></a>
+                                    <ul class="dropdown">
+                                        <li data-checked=false data-name="American Indian/Alaska Native Foods" data-value="American Indian/Alaska Native Foods">American Indian/Alaska Native Foods </li>
+                                        <li data-checked=false data-name="Baby Foods" data-value="Baby Foods">Baby Foods </li>
+                                        <li data-checked=false data-name="Baked Products" data-value="Baked Products">Baked Products </li>
+                                        <li data-checked=false data-name="Beef Products" data-value="Beef Products">Beef Products </li>
+                                        <li data-checked=false data-name="Beverages" data-value="Beverages">Beverages </li>
+                                        <li data-checked=false data-name="Branded Foods Products Database" data-value="Branded Foods Products Database">Branded Foods Products Database </li>
+                                        <li data-checked=false data-name="Breakfast Cereals" data-value="Breakfast Cereals">Breakfast Cereals </li>
+                                        <li data-checked=false data-name="Cereal Grains and Pasta" data-value="Cereal Grains and Pasta">Cereal Grains and Pasta </li>
+                                        <li data-checked=false data-name="Dairy and Egg Products" data-value="Dairy and Egg Products">Dairy and Egg Products </li>
+                                        <li data-checked=false data-name="Fast Foods" data-value="Fast Foods">Fast Foods </li>
+                                        <li data-checked=false data-name="Fats and Oils" data-value="Fats and Oils">Fats and Oils </li>
+                                        <li data-checked=false data-name="Finfish and Shellfish Products" data-value="Finfish and Shellfish Products">Finfish and Shellfish Products </li>
+                                        <li data-checked=false data-name="Fruits and Fruit Juices" data-value="Fruits and Fruit Juices">Fruits and Fruit Juices </li>
+                                        <li data-checked=false data-name="Lamb, Veal, and Game Products" data-value="Lamb, Veal, and Game Products">Lamb, Veal, and Game Products </li>
+                                        <li data-checked=false data-name="Legumes and Legume Products" data-value="Legumes and Legume Products">Legumes and Legume Products </li>
+                                        <li data-checked=false data-name="Meals, Entrees, and Side Dishes" data-value="Meals, Entrees, and Side Dishes">Meals, Entrees, and Side Dishes </li>
+                                        <li data-checked=false data-name="Nut and Seed Products" data-value="Nut and Seed Products">Nut and Seed Products </li>
+                                        <li data-checked=false data-name="Pork Products" data-value="Pork Products">Pork Products </li>
+                                        <li data-checked=false data-name="Poultry Products" data-value="Poultry Products">Poultry Products </li>
+                                        <li data-checked=false data-name="Restaurant Foods" data-value="Restaurant Foods">Restaurant Foods </li>
+                                        <li data-checked=false data-name="Sausages and Luncheon Meats" data-value="Sausages and Luncheon Meats">Sausages and Luncheon Meats </li>
+                                        <li data-checked=false data-name="Snacks" data-value="Snacks">Snacks </li>
+                                        <li data-checked=false data-name="Soups, Sauces, and Gravies" data-value="Soups, Sauces, and Gravies">Soups, Sauces, and Gravies </li>
+                                        <li data-checked=false data-name="Spices and Herbs" data-value="Spices and Herbs">Spices and Herbs </li>
+                                        <li data-checked=false data-name="Sweets" data-value="Sweets">Sweets </li>
+                                        <li data-checked=false data-name="Vegetables and Vegetable Products" data-value="Vegetables and Vegetable Products">Vegetables and Vegetable Products </li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    <select class="select" id="filterNutrient">
-                                        <option value="">Select nutrient ...</option>
-                                        <option value="255">Water (g)</option>
-                                        <option value="208">Energy (kcal)</option>
-                                        <option value="268">Energy (kJ)</option>
-                                        <option value="203">Protein (g)</option>
-                                        <option value="204">Total lipid (fat) (g)</option>
-                                        <option value="207">Ash (g)</option>
-                                        <option value="205">Carbohydrate, by difference (g)</option>
-                                        <option value="291">Fiber, total dietary (g)</option>
-                                        <option value="269">Sugars, total (g)</option>
-                                        <option value="210">Sucrose (g)</option>
-                                        <option value="211">Glucose (dextrose) (g)</option>
-                                        <option value="212">Fructose (g)</option>
-                                        <option value="213">Lactose (g)</option>
-                                        <option value="214">Maltose (g)</option>
-                                        <option value="287">Galactose (g)</option>
-                                        <option value="209">Starch (g)</option>
-                                        <option value="301">Calcium, Ca (mg)</option>
-                                        <option value="303">Iron, Fe (mg)</option>
-                                        <option value="304">Magnesium, Mg (mg)</option>
-                                        <option value="305">Phosphorus, P (mg)</option>
-                                        <option value="306">Potassium, K (mg)</option>
-                                        <option value="307">Sodium, Na (mg)</option>
-                                        <option value="309">Zinc, Zn (mg)</option>
-                                        <option value="312">Copper, Cu (mg)</option>
-                                        <option value="315">Manganese, Mn (mg)</option>
-                                        <option value="317">Selenium, Se (µg)</option>
-                                        <option value="313">Fluoride, F (µg)</option>
-                                        <option value="401">Vitamin C, total ascorbic acid (mg)</option>
-                                        <option value="404">Thiamin (mg)</option>
-                                        <option value="405">Riboflavin (mg)</option>
-                                        <option value="406">Niacin (mg)</option>
-                                        <option value="410">Pantothenic acid (mg)</option>
-                                        <option value="415">Vitamin B-6 (mg)</option>
-                                        <option value="417">Folate, total (µg)</option>
-                                        <option value="431">Folic acid (µg)</option>
-                                        <option value="432">Folate, food (µg)</option>
-                                        <option value="435">Folate, DFE (µg)</option>
-                                        <option value="421">Choline, total (mg)</option>
-                                        <option value="454">Betaine (mg)</option>
-                                        <option value="418">Vitamin B-12 (µg)</option>
-                                        <option value="578">Vitamin B-12, added (µg)</option>
-                                        <option value="320">Vitamin A, RAE (µg)</option>
-                                        <option value="319">Retinol (µg)</option>
-                                        <option value="321">Carotene, beta (µg)</option>
-                                        <option value="322">Carotene, alpha (µg)</option>
-                                        <option value="334">Cryptoxanthin, beta (µg)</option>
-                                        <option value="318">Vitamin A, IU (IU)</option>
-                                        <option value="337">Lycopene (µg)</option>
-                                        <option value="338">Lutein + zeaxanthin (µg)</option>
-                                        <option value="323">Vitamin E (alpha-tocopherol) (mg)</option>
-                                        <option value="573">Vitamin E, added (mg)</option>
-                                        <option value="341">Tocopherol, beta (mg)</option>
-                                        <option value="342">Tocopherol, gamma (mg)</option>
-                                        <option value="343">Tocopherol, delta (mg)</option>
-                                        <option value="344">Tocotrienol, alpha (mg)</option>
-                                        <option value="345">Tocotrienol, beta (mg)</option>
-                                        <option value="346">Tocotrienol, gamma (mg)</option>
-                                        <option value="347">Tocotrienol, delta (mg)</option>
-                                        <option value="328">Vitamin D (D2 + D3) (µg)</option>
-                                        <option value="325">Vitamin D2 (ergocalciferol) (µg)</option>
-                                        <option value="326">Vitamin D3 (cholecalciferol) (µg)</option>
-                                        <option value="324">Vitamin D (IU)</option>
-                                        <option value="430">Vitamin K (phylloquinone) (µg)</option>
-                                        <option value="429">Dihydrophylloquinone (µg)</option>
-                                        <option value="428">Menaquinone-4 (µg)</option>
-                                        <option value="606">Fatty acids, total saturated (g)</option>
-                                        <option value="607">4:0 (g)</option>
-                                        <option value="608">6:0 (g)</option>
-                                        <option value="609">8:0 (g)</option>
-                                        <option value="610">10:0 (g)</option>
-                                        <option value="611">12:0 (g)</option>
-                                        <option value="696">13:0 (g)</option>
-                                        <option value="612">14:0 (g)</option>
-                                        <option value="652">15:0 (g)</option>
-                                        <option value="613">16:0 (g)</option>
-                                        <option value="653">17:0 (g)</option>
-                                        <option value="614">18:0 (g)</option>
-                                        <option value="615">20:0 (g)</option>
-                                        <option value="624">22:0 (g)</option>
-                                        <option value="654">24:0 (g)</option>
-                                        <option value="645">Fatty acids, total monounsaturated (g)</option>
-                                        <option value="625">14:1 (g)</option>
-                                        <option value="697">15:1 (g)</option>
-                                        <option value="626">16:1 undifferentiated (g)</option>
-                                        <option value="673">16:1 c (g)</option>
-                                        <option value="662">16:1 t (g)</option>
-                                        <option value="687">17:1 (g)</option>
-                                        <option value="617">18:1 undifferentiated (g)</option>
-                                        <option value="674">18:1 c (g)</option>
-                                        <option value="663">18:1 t (g)</option>
-                                        <option value="859">18:1-11 t (18:1t n-7) (g)</option>
-                                        <option value="628">20:1 (g)</option>
-                                        <option value="630">22:1 undifferentiated (g)</option>
-                                        <option value="676">22:1 c (g)</option>
-                                        <option value="664">22:1 t (g)</option>
-                                        <option value="671">24:1 c (g)</option>
-                                        <option value="646">Fatty acids, total polyunsaturated (g)</option>
-                                        <option value="618">18:2 undifferentiated (g)</option>
-                                        <option value="675">18:2 n-6 c,c (g)</option>
-                                        <option value="670">18:2 CLAs (g)</option>
-                                        <option value="669">18:2 t,t (g)</option>
-                                        <option value="666">18:2 i (g)</option>
-                                        <option value="665">18:2 t not further defined (g)</option>
-                                        <option value="619">18:3 undifferentiated (g)</option>
-                                        <option value="851">18:3 n-3 c,c,c (ALA) (g)</option>
-                                        <option value="685">18:3 n-6 c,c,c (g)</option>
-                                        <option value="856">18:3i (g)</option>
-                                        <option value="627">18:4 (g)</option>
-                                        <option value="672">20:2 n-6 c,c (g)</option>
-                                        <option value="689">20:3 undifferentiated (g)</option>
-                                        <option value="852">20:3 n-3 (g)</option>
-                                        <option value="853">20:3 n-6 (g)</option>
-                                        <option value="620">20:4 undifferentiated (g)</option>
-                                        <option value="855">20:4 n-6 (g)</option>
-                                        <option value="629">20:5 n-3 (EPA) (g)</option>
-                                        <option value="857">21:5 (g)</option>
-                                        <option value="858">22:4 (g)</option>
-                                        <option value="631">22:5 n-3 (DPA) (g)</option>
-                                        <option value="621">22:6 n-3 (DHA) (g)</option>
-                                        <option value="605">Fatty acids, total trans (g)</option>
-                                        <option value="693">Fatty acids, total trans-monoenoic (g)</option>
-                                        <option value="695">Fatty acids, total trans-polyenoic (g)</option>
-                                        <option value="601">Cholesterol (mg)</option>
-                                        <option value="636">Phytosterols (mg)</option>
-                                        <option value="638">Stigmasterol (mg)</option>
-                                        <option value="639">Campesterol (mg)</option>
-                                        <option value="641">Beta-sitosterol (mg)</option>
-                                        <option value="501">Tryptophan (g)</option>
-                                        <option value="502">Threonine (g)</option>
-                                        <option value="503">Isoleucine (g)</option>
-                                        <option value="504">Leucine (g)</option>
-                                        <option value="505">Lysine (g)</option>
-                                        <option value="506">Methionine (g)</option>
-                                        <option value="507">Cystine (g)</option>
-                                        <option value="508">Phenylalanine (g)</option>
-                                        <option value="509">Tyrosine (g)</option>
-                                        <option value="510">Valine (g)</option>
-                                        <option value="511">Arginine (g)</option>
-                                        <option value="512">Histidine (g)</option>
-                                        <option value="513">Alanine (g)</option>
-                                        <option value="514">Aspartic acid (g)</option>
-                                        <option value="515">Glutamic acid (g)</option>
-                                        <option value="516">Glycine (g)</option>
-                                        <option value="517">Proline (g)</option>
-                                        <option value="518">Serine (g)</option>
-                                        <option value="521">Hydroxyproline (g)</option>
-                                        <option value="221">Alcohol, ethyl (g)</option>
-                                        <option value="262">Caffeine (mg)</option>
-                                        <option value="263">Theobromine (mg)</option>
-                                    </select>
+                                    <a href="#" class="selectDropdown" id="filterNutrient">Select nutrient ... <span class="caret"></span></a>
+                                    <ul class="dropdown">
+                                        <li data-checked=false data-name="Water (g)" data-value="255">Water (g) </li>
+                                        <li data-checked=false data-name="Energy (kcal)" data-value="208">Energy (kcal) </li>
+                                        <li data-checked=false data-name="Energy (kJ)" data-value="268">Energy (kJ) </li>
+                                        <li data-checked=false data-name="Protein (g)" data-value="203">Protein (g) </li>
+                                        <li data-checked=false data-name="Total lipid (fat)" data-value="204">Total lipid (fat) (g) </li>
+                                        <li data-checked=false data-name="Ash (g)" data-value="207">Ash (g) </li>
+                                        <li data-checked=false data-name="Carbohydrate, by difference (g)" data-value="205">Carbohydrate, by difference (g) </li>
+                                        <li data-checked=false data-name="Fiber, total dietary (g)" data-value="291">Fiber, total dietary (g) </li>
+                                        <li data-checked=false data-name="Sugars, total (g)" data-value="269">Sugars, total (g) </li>
+                                        <li data-checked=false data-name="Sucrose (g)" data-value="210">Sucrose (g) </li>
+                                        <li data-checked=false data-name="Glucose (dextrose) (g)" data-value="211">Glucose (dextrose) (g) </li>
+                                        <li data-checked=false data-name="Fructose (g)" data-value="212">Fructose (g) </li>
+                                        <li data-checked=false data-name="Lactose (g)" data-value="213">Lactose (g) </li>
+                                        <li data-checked=false data-name="Maltose (g)" data-value="214">Maltose (g) </li>
+                                        <li data-checked=false data-name="Galactose (g)" data-value="287">Galactose (g) </li>
+                                        <li data-checked=false data-name="Starch (g)" data-value="209">Starch (g) </li>
+                                        <li data-checked=false data-name="Calcium, Ca (mg)" data-value="301">Calcium, Ca (mg) </li>
+                                        <li data-checked=false data-name="Iron, Fe (mg)" data-value="303">Iron, Fe (mg) </li>
+                                        <li data-checked=false data-name="Magnesium, Mg (mg)" data-value="304">Magnesium, Mg (mg) </li>
+                                        <li data-checked=false data-name="Phosphorus, P (mg)" data-value="305">Phosphorus, P (mg) </li>
+                                        <li data-checked=false data-name="Potassium, K (mg)" data-value="306">Potassium, K (mg) </li>
+                                        <li data-checked=false data-name="Sodium, Na (mg)" data-value="307">Sodium, Na (mg) </li>
+                                        <li data-checked=false data-name="Zinc, Zn (mg)" data-value="309">Zinc, Zn (mg) </li>
+                                        <li data-checked=false data-name="Copper, Cu (mg)" data-value="312">Copper, Cu (mg) </li>
+                                        <li data-checked=false data-name="Manganese, Mn (mg)" data-value="315">Manganese, Mn (mg) </li>
+                                        <li data-checked=false data-name="Selenium, Se (µg)" data-value="317">Selenium, Se (µg) </li>
+                                        <li data-checked=false data-name="Fluoride, F (µg)" data-value="313">Fluoride, F (µg) </li>
+                                        <li data-checked=false data-name="Vitamin C, total ascorbic acid (mg)" data-value="401">Vitamin C, total ascorbic acid (mg) </li>
+                                        <li data-checked=false data-name="Thiamin (mg)" data-value="404">Thiamin (mg) </li>
+                                        <li data-checked=false data-name="Riboflavin (mg)" data-value="405">Riboflavin (mg) </li>
+                                        <li data-checked=false data-name="Niacin (mg)" data-value="406">Niacin (mg) </li>
+                                        <li data-checked=false data-name="Pantothenic acid (mg)" data-value="410">Pantothenic acid (mg) </li>
+                                        <li data-checked=false data-name="Vitamin B-6 (mg)" data-value="415">Vitamin B-6 (mg) </li>
+                                        <li data-checked=false data-name="Folate, total (µg)" data-value="417">Folate, total (µg) </li>
+                                        <li data-checked=false data-name="Folic acid (µg)" data-value="431">Folic acid (µg) </li>
+                                        <li data-checked=false data-name="Folate, food (µg)" data-value="432">Folate, food (µg) </li>
+                                        <li data-checked=false data-name="Folate, DFE (µg)" data-value="435">Folate, DFE (µg) </li>
+                                        <li data-checked=false data-name="Choline, total (mg)" data-value="421">Choline, total (mg) </li>
+                                        <li data-checked=false data-name="Betaine (mg)" data-value="454">Betaine (mg) </li>
+                                        <li data-checked=false data-name="Vitamin B-12 (µg)" data-value="418">Vitamin B-12 (µg) </li>
+                                        <li data-checked=false data-name="Vitamin B-12, added (µg)" data-value="578">Vitamin B-12, added (µg) </li>
+                                        <li data-checked=false data-name="Vitamin A, RAE (µg)" data-value="320">Vitamin A, RAE (µg) </li>
+                                        <li data-checked=false data-name="Retinol (µg)" data-value="319">Retinol (µg) </li>
+                                        <li data-checked=false data-name="Carotene, beta (µg)" data-value="321">Carotene, beta (µg) </li>
+                                        <li data-checked=false data-name="Carotene, alpha (µg)" data-value="322">Carotene, alpha (µg) </li>
+                                        <li data-checked=false data-name="Cryptoxanthin, beta (µg)" data-value="334">Cryptoxanthin, beta (µg) </li>
+                                        <li data-checked=false data-name="Vitamin A, IU (IU)" data-value="318">Vitamin A, IU (IU) </li>
+                                        <li data-checked=false data-name="Lycopene (µg)" data-value="337">Lycopene (µg) </li>
+                                        <li data-checked=false data-name="Lutein + zeaxanthin (µg)" data-value="338">Lutein + zeaxanthin (µg) </li>
+                                        <li data-checked=false data-name="Vitamin E (alpha-tocopherol) (mg)" data-value="323">Vitamin E (alpha-tocopherol) (mg) </li>
+                                        <li data-checked=false data-name="Vitamin E, added (mg)" data-value="573">Vitamin E, added (mg) </li>
+                                        <li data-checked=false data-name="Tocopherol, beta (mg)" data-value="341">Tocopherol, beta (mg) </li>
+                                        <li data-checked=false data-name="Tocopherol, gamma (mg)" data-value="342">Tocopherol, gamma (mg) </li>
+                                        <li data-checked=false data-name="Tocopherol, delta (mg)" data-value="343">Tocopherol, delta (mg) </li>
+                                        <li data-checked=false data-name="Tocotrienol, alpha (mg)" data-value="344">Tocotrienol, alpha (mg) </li>
+                                        <li data-checked=false data-name="Tocotrienol, beta (mg)" data-value="345">Tocotrienol, beta (mg) </li>
+                                        <li data-checked=false data-name="Tocotrienol, gamma (mg)" data-value="346">Tocotrienol, gamma (mg) </li>
+                                        <li data-checked=false data-name="Tocotrienol, delta (mg)" data-value="347">Tocotrienol, delta (mg) </li>
+                                        <li data-checked=false data-name="Vitamin D (D2 + D3) (µg)" data-value="328">Vitamin D (D2 + D3) (µg) </li>
+                                        <li data-checked=false data-name="Vitamin D2 (ergocalciferol) (µg)" data-value="325">Vitamin D2 (ergocalciferol) (µg) </li>
+                                        <li data-checked=false data-name="Vitamin D3 (cholecalciferol) (µg)" data-value="326">Vitamin D3 (cholecalciferol) (µg) </li>
+                                        <li data-checked=false data-name="Vitamin D (IU)" data-value="324">Vitamin D (IU) </li>
+                                        <li data-checked=false data-name="Vitamin K (phylloquinone) (µg)" data-value="430">Vitamin K (phylloquinone) (µg) </li>
+                                        <li data-checked=false data-name="Dihydrophylloquinone (µg)" data-value="429">Dihydrophylloquinone (µg) </li>
+                                        <li data-checked=false data-name="Menaquinone-4 (µg)" data-value="428">Menaquinone-4 (µg) </li>
+                                        <li data-checked=false data-name="Fatty acids, total saturated (g)" data-value="606">Fatty acids, total saturated (g) </li>
+                                        <li data-checked=false data-name="4:0 (g)" data-value="607">4:0 (g) </li>
+                                        <li data-checked=false data-name="6:0 (g)" data-value="608">6:0 (g) </li>
+                                        <li data-checked=false data-name="8:0 (g)" data-value="609">8:0 (g) </li>
+                                        <li data-checked=false data-name="10:0 (g)" data-value="610">10:0 (g) </li>
+                                        <li data-checked=false data-name="12:0 (g)" data-value="611">12:0 (g) </li>
+                                        <li data-checked=false data-name="13:0 (g)" data-value="696">13:0 (g) </li>
+                                        <li data-checked=false data-name="14:0 (g)" data-value="612">14:0 (g) </li>
+                                        <li data-checked=false data-name="15:0 (g)" data-value="652">15:0 (g) </li>
+                                        <li data-checked=false data-name="16:0 (g)" data-value="613">16:0 (g) </li>
+                                        <li data-checked=false data-name="17:0 (g)" data-value="653">17:0 (g) </li>
+                                        <li data-checked=false data-name="18:0 (g)" data-value="614">18:0 (g) </li>
+                                        <li data-checked=false data-name="20:0 (g)" data-value="615">20:0 (g) </li>
+                                        <li data-checked=false data-name="22:0 (g)" data-value="624">22:0 (g) </li>
+                                        <li data-checked=false data-name="24:0 (g)" data-value="654">24:0 (g) </li>
+                                        <li data-checked=false data-name="Fatty acids, total monounsaturated (g)" data-value="645">Fatty acids, total monounsaturated (g) </li>
+                                        <li data-checked=false data-name="14:1 (g)" data-value="625">14:1 (g) </li>
+                                        <li data-checked=false data-name="15:1 (g)" data-value="697">15:1 (g) </li>
+                                        <li data-checked=false data-name="16:1 undifferentiated (g)" data-value="626">16:1 undifferentiated (g) </li>
+                                        <li data-checked=false data-name="16:1 c (g)" data-value="673">16:1 c (g) </li>
+                                        <li data-checked=false data-name="16:1 t (g)" data-value="662">16:1 t (g) </li>
+                                        <li data-checked=false data-name="17:1 (g)" data-value="687">17:1 (g) </li>
+                                        <li data-checked=false data-name="18:1 undifferentiated (g)" data-value="617">18:1 undifferentiated (g) </li>
+                                        <li data-checked=false data-name="18:1 c (g)" data-value="674">18:1 c (g) </li>
+                                        <li data-checked=false data-name="18:1 t (g)" data-value="663">18:1 t (g) </li>
+                                        <li data-checked=false data-name="18:1-11 t (18:1t n-7) (g)" data-value="859">18:1-11 t (18:1t n-7) (g) </li>
+                                        <li data-checked=false data-name="20:1 (g)" data-value="628">20:1 (g) </li>
+                                        <li data-checked=false data-name="22:1 undifferentiated (g)" data-value="630">22:1 undifferentiated (g) </li>
+                                        <li data-checked=false data-name="22:1 c (g)" data-value="676">22:1 c (g) </li>
+                                        <li data-checked=false data-name="22:1 t (g)" data-value="664">22:1 t (g) </li>
+                                        <li data-checked=false data-name="24:1 c (g)" data-value="671">24:1 c (g) </li>
+                                        <li data-checked=false data-name="Fatty acids, total polyunsaturated (g)" data-value="646">Fatty acids, total polyunsaturated (g) </li>
+                                        <li data-checked=false data-name="18:2 undifferentiated (g)" data-value="618">18:2 undifferentiated (g) </li>
+                                        <li data-checked=false data-name="18:2 n-6 c,c (g)" data-value="675">18:2 n-6 c,c (g) </li>
+                                        <li data-checked=false data-name="18:2 CLAs (g)" data-value="670">18:2 CLAs (g) </li>
+                                        <li data-checked=false data-name="18:2 t,t (g)" data-value="669">18:2 t,t (g) </li>
+                                        <li data-checked=false data-name="18:2 i (g)" data-value="666">18:2 i (g) </li>
+                                        <li data-checked=false data-name="18:2 t not further defined (g)" data-value="665">18:2 t not further defined (g) </li>
+                                        <li data-checked=false data-name="18:3 undifferentiated (g)" data-value="619">18:3 undifferentiated (g) </li>
+                                        <li data-checked=false data-name="18:3 n-3 c,c,c (ALA) (g)" data-value="851">18:3 n-3 c,c,c (ALA) (g) </li>
+                                        <li data-checked=false data-name="18:3 n-6 c,c,c (g)" data-value="685">18:3 n-6 c,c,c (g) </li>
+                                        <li data-checked=false data-name="18:3i (g)" data-value="856">18:3i (g) </li>
+                                        <li data-checked=false data-name="18:4 (g)" data-value="627">18:4 (g) </li>
+                                        <li data-checked=false data-name="20:2 n-6 c,c (g)" data-value="672">20:2 n-6 c,c (g) </li>
+                                        <li data-checked=false data-name="20:3 undifferentiated (g)" data-value="689">20:3 undifferentiated (g) </li>
+                                        <li data-checked=false data-name="20:3 n-3 (g)" data-value="852">20:3 n-3 (g) </li>
+                                        <li data-checked=false data-name="20:3 n-6 (g)" data-value="853">20:3 n-6 (g) </li>
+                                        <li data-checked=false data-name="20:4 undifferentiated (g)" data-value="620">20:4 undifferentiated (g) </li>
+                                        <li data-checked=false data-name="20:4 n-6 (g)" data-value="855">20:4 n-6 (g) </li>
+                                        <li data-checked=false data-name="20:5 n-3 (EPA) (g)" data-value="629">20:5 n-3 (EPA) (g) </li>
+                                        <li data-checked=false data-name="21:5 (g)" data-value="857">21:5 (g) </li>
+                                        <li data-checked=false data-name="22:4 (g)" data-value="858">22:4 (g) </li>
+                                        <li data-checked=false data-name="22:5 n-3 (DPA) (g)" data-value="631">22:5 n-3 (DPA) (g) </li>
+                                        <li data-checked=false data-name="22:6 n-3 (DHA) (g)" data-value="621">22:6 n-3 (DHA) (g) </li>
+                                        <li data-checked=false data-name="Fatty acids, total trans (g)" data-value="605">Fatty acids, total trans (g) </li>
+                                        <li data-checked=false data-name="Fatty acids, total trans-monoenoic (g)" data-value="693">Fatty acids, total trans-monoenoic (g) </li>
+                                        <li data-checked=false data-name="Fatty acids, total trans-polyenoic (g)" data-value="695">Fatty acids, total trans-polyenoic (g) </li>
+                                        <li data-checked=false data-name="Cholesterol (mg)" data-value="601">Cholesterol (mg) </li>
+                                        <li data-checked=false data-name="Phytosterols (mg)" data-value="636">Phytosterols (mg) </li>
+                                        <li data-checked=false data-name="Stigmasterol (mg)" data-value="638">Stigmasterol (mg) </li>
+                                        <li data-checked=false data-name="Campesterol (mg)" data-value="639">Campesterol (mg) </li>
+                                        <li data-checked=false data-name="Beta-sitosterol (mg)" data-value="641">Beta-sitosterol (mg) </li>
+                                        <li data-checked=false data-name="Tryptophan (g)" data-value="501">Tryptophan (g) </li>
+                                        <li data-checked=false data-name="Threonine (g)" data-value="502">Threonine (g) </li>
+                                        <li data-checked=false data-name="Isoleucine (g)" data-value="503">Isoleucine (g) </li>
+                                        <li data-checked=false data-name="Leucine (g)" data-value="504">Leucine (g) </li>
+                                        <li data-checked=false data-name="Lysine (g)" data-value="505">Lysine (g) </li>
+                                        <li data-checked=false data-name="Methionine (g)" data-value="506">Methionine (g) </li>
+                                        <li data-checked=false data-name="Cystine (g)" data-value="507">Cystine (g) </li>
+                                        <li data-checked=false data-name="Phenylalanine (g)" data-value="508">Phenylalanine (g) </li>
+                                        <li data-checked=false data-name="Tyrosine (g)" data-value="509">Tyrosine (g) </li>
+                                        <li data-checked=false data-name="Valine (g)" data-value="510">Valine (g) </li>
+                                        <li data-checked=false data-name="Arginine (g)" data-value="511">Arginine (g) </li>
+                                        <li data-checked=false data-name="Histidine (g)" data-value="512">Histidine (g) </li>
+                                        <li data-checked=false data-name="Alanine (g)" data-value="513">Alanine (g) </li>
+                                        <li data-checked=false data-name="Aspartic acid (g)" data-value="514">Aspartic acid (g) </li>
+                                        <li data-checked=false data-name="Glutamic acid (g)" data-value="515">Glutamic acid (g) </li>
+                                        <li data-checked=false data-name="Glycine (g)" data-value="516">Glycine (g) </li>
+                                        <li data-checked=false data-name="Proline (g)" data-value="517">Proline (g) </li>
+                                        <li data-checked=false data-name="Serine (g)" data-value="518">Serine (g) </li>
+                                        <li data-checked=false data-name="Hydroxyproline (g)" data-value="521">Hydroxyproline (g) </li>
+                                        <li data-checked=false data-name="Alcohol, ethyl (g)" data-value="221">Alcohol, ethyl (g) </li>
+                                        <li data-checked=false data-name="Caffeine (mg)" data-value="262">Caffeine (mg) </li>
+                                        <li data-checked=false data-name="Theobromine (mg)" data-value="263">Theobromine (mg) </li>
+                                    </ul>
                                 </li>
                             </ul>
                             <button type="button" class="btn btn-default" id="Search">Search</button>

@@ -6,18 +6,21 @@ $(document).ready(function(){
     $('#Search').click(function(){
         checkSelectFilter();
     });
-    $('.select').on('click', function(e){
+    $('.selectDropdown').on('click', function(e){
+        $(this).next('ul').toggle();
         stopDropdown(e);
     });
     $('#filterID').keypress(onlyNumbers);
     $('#filterNutrient').keypress(onlyNumbers);
     $('#result').on('click', '.tablePg', function(){
-        var value = $(this).data('value');
-        pagination(value);
+        pagination(this);
     });
     $('#result').on('click', '.glyphicon-search', function(){
-        var value = $(this).data('id');
-        details(value);
+        details(this);
+    });
+    $('.navbar-default').on('click', '.dropdown li', function(e){
+        checkDropdownItem(this);
+        stopDropdown(e);
     });
     $(document).keypress(function(e) {
         if (e.which == 13){
@@ -30,11 +33,14 @@ var api = {
     base:  'http://api.nal.usda.gov/ndb/',
     key: '&format=json&api_key=iEJf9ZjrUpWcSSKuvekPltYZrO113PbcJxCqvzEC',
     active: '',
-    paginationLength: ''
+    paginationLength: '',
+    selectFilterQuantity: 0
 }
 
 function initialization(){
     hide(['#filterNutrient', '#searchFoodTable', '#searchNutrientTable', '#result h1']);
+    $('#filterNutrient').next('ul').hide();
+    $('#filterGroup').next('ul').hide();
 }
 
 function hide(itens){
@@ -83,6 +89,19 @@ function clearFilterValue(){
     $('#filterNutrient').val('');
 }
 
+function checkDropdownItem(item){
+    if($(item).data("checked")===false && api.selectFilterQuantity<3){
+        $(item).append('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>');
+        $(item).data("checked", true);
+        api.selectFilterQuantity++;
+    }
+    else if($(item).data("checked")===true){
+        $(item).html($(item).data("name") + ' ');
+        $(item).data("checked", false);
+        api.selectFilterQuantity--;
+    }
+}
+
 function checkErrors(data){
     if(data.hasOwnProperty('errors')){
         buildAlertMessage();
@@ -112,11 +131,13 @@ function updateFilters(){
     var valueSelect = $('#selectFoodNutrient').val();
     if(valueSelect==='Food'){
         hide(['#filterNutrient']);
+        $('#filterNutrient').next('ul').hide();
         show(['#filterName', '#filterID', '#filterGroup']);
     }
     else{
         hide(['#filterName', '#filterID', '#filterGroup']);
-        show(['#filterNutrient']);
+        $('#filterGroup').next('ul').hide();
+        show(['#filterNutrient', '#filterNutrient > ul']);
     }
 }
 
@@ -319,8 +340,8 @@ function nutrientRequest(){
     $('#result').fadeIn();
 }
 
-function pagination(value){
-    var url = api.active + '&max=10&offset=' + (value-1)*10;
+function pagination(item){
+    var url = api.active + '&max=10&offset=' + ($(item).data('value')-1)*10;
     if($('#selectFoodNutrient').val()==='Food'){
         ajax(url, 'foodSearch');
     }
@@ -329,8 +350,8 @@ function pagination(value){
     }
 }
 
-function details(value){
-    var url = api.base + 'reports/?type=b&ndbno=' + value + api.key;
+function details(item){
+    var url = api.base + 'reports/?type=b&ndbno=' + $(item).data('id') + api.key;
     ajax(url, 'foodReport');
     $('#tableReport tbody').html('');
     $('#foodImage').html('');
