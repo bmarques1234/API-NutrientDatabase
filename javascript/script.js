@@ -91,6 +91,18 @@ function clearFilterValue(){
     $('#filterID').val('');
     $('#filterGroup').val('');
     $('#filterNutrient').val('');
+    clearDropdownItem();
+}
+
+function clearDropdownItem(){
+    $('.dropdown li').each(function(){
+        $(this).data('checked', false);
+        $(this).html($(this).data("name") + ' ');
+    })
+    $('#filterGroup').data('name', $('#filterGroup').data('value'));
+    $('#filterGroup').html($('#filterGroup').data('name') + ' <span class="caret"></span>');
+    $('#filterNutrient').data('name', $('#filterNutrient').data('value'));
+    $('#filterNutrient').html($('#filterNutrient').data('name') + ' <span class="caret"></span>');
 }
 
 function checkDropdownItem(item, enableMultipleValues, title){
@@ -134,7 +146,6 @@ function checkErrors(data){
 }
 
 function checkSelectFilter(){
-    findImage();
     if($('#selectFoodNutrient').val()==='Food'){
         checkFilters();
     }
@@ -164,14 +175,7 @@ function updateFilters(){
         $('#filterGroup').next('ul').hide();
         show(['#filterNutrient', '#filterNutrient > ul']);
     }
-    $('.dropdown li').each(function(){
-        $(this).data('checked', false);
-        $(this).html($(this).data("name") + ' ');
-    })
-    $('#filterGroup').data('name', $('#filterGroup').data('value'));
-    $('#filterGroup').html($('#filterGroup').data('name') + ' <span class="caret"></span>');
-    $('#filterNutrient').data('name', $('#filterNutrient').data('value'));
-    $('#filterNutrient').html($('#filterNutrient').data('name') + ' <span class="caret"></span>');
+    clearDropdownItem();
     api.selectFilterQuantity = 0;
 }
 
