@@ -111,6 +111,7 @@ function resetDropdownTitle(title){
     $(title).data('name', $(title).data('value'));
     $(title).html($(title).data('name') + ' <span class="caret"></span>');
 }
+
 function checkErrors(data){
     if(data.hasOwnProperty('errors')){
         buildAlertMessage();
@@ -136,7 +137,6 @@ function checkFilters(){
 }
 
 function checkDropdownItens(item, enableMultipleValues, title){
-    var titleName;
     if(enableMultipleValues===false){
         var c = 1;
     }
@@ -239,14 +239,15 @@ function buildAlertMessage(){
 
 function buildUrl(type){
     var url;
+    var name;
     if(type==='Food'){
-        var name = translate();
         if($('#filterID').val()!==''){
             url = api.base + 'reports/?' + api.key + '&type=b&ndbno=' + $('#filterID').val();
         }
         else{
             url = api.base + 'search/?' + api.key;
             if($('#filterName').val()!==''){
+                name = translate();
                 url += '&q=' + name;
             }
             url += checkedItens('#dropdownFilterGroup .dropdown li', '&fg=');
